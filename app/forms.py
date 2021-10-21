@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, SelectField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
 from app.models import User
 
@@ -30,3 +30,13 @@ class RegisterForm(FlaskForm):
         email = User.query.filter_by(email=email.data).first()
         if email is not None:
             raise ValidationError('This email is already register!')
+
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    weight = IntegerField('Weight in kilograms')
+    height = IntegerField('Height in centimeters')
+    sex = SelectField('Sex', choices=['Female', 'Male'])
+    age = IntegerField('Age')
+    submit = SubmitField('Save')
+

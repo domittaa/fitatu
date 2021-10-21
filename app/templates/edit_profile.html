@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <h1>Edit profile</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.weight.label }}<br>
+            {{ form.weight(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.height.label }}<br>
+            {{ form.height(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.sex.label }}<br>
+            {{ form.sex() }}<br>
+        </p>
+        <p>
+            {{ form.age.label }}<br>
+            {{ form.age(size=32) }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
