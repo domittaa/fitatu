@@ -27,6 +27,47 @@
             {{ form.age.label }}<br>
             {{ form.age(size=32) }}<br>
         </p>
+        <p>
+            {{ form.pal.label }}<br>
+            {{ form.pal() }}<br>
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
+    <h1>What is PAL?</h1>
+    <p>Physical Activity Level (PAL) is a way to express a person's daily physical activity as a single number.
+        If you don't know what is your PAL use a table:
+    </p>
+    <table>
+  <tr>
+    <th>PAL</th>
+    <th>Physical activity</th>
+    <th>Professional activity</th>
+  </tr>
+  <tr>
+    <td>1.2</td>
+    <td>No physical activity. </td>
+    <td>No physical activity. Cerebral palsy patient.</td>
+  </tr>
+  <tr>
+    <td>1.4</td>
+    <td>Light (around 140 minutes weekly)</td>
+    <td>Office worker getting little or no exercise</td>
+  </tr>
+  <tr>
+    <td>1.6</td>
+    <td>Average (around 280 minutes weekly)</td>
+    <td>Office worker, exercising 2/3 times a week for an hour minimum</td>
+  </tr>
+  <tr>
+    <td>1.8</td>
+    <td>High (around 420 minutes weekly)</td>
+    <td>Office worker, exercising 4/5 times a week for an hour minimum</td>
+  </tr>
+  <tr>
+    <td>2.0</td>
+    <td>Very high (around 560 minutes weekly)</td>
+    <td>Proffesional athlete, exercising 6 times a week or a person who does hard manual job</td>
+  </tr>
+</table>
+
 {% endblock %}

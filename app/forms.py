@@ -39,4 +39,6 @@ class EditProfileForm(FlaskForm):
     sex = SelectField('Sex', choices=['Female', 'Male'])
     age = IntegerField('Age')
     submit = SubmitField('Save')
+    pal = SelectField('PAL-Physical Activity Level', choices=[1.2, 1.4, 1.6, 1.8, 2.0])
+
 

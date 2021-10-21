@@ -17,7 +17,7 @@ class User(UserMixin, db.Model):
     height = db.Column(db.Integer)
     sex = db.Column(db.String(64))
     age = db.Column(db.Integer)
-    pal = db.String(128)
+    pal = db.Column(db.Integer)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

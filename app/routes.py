@@ -64,6 +64,7 @@ def edit_profile():
         current_user.height = form.height.data
         current_user.sex = form.sex.data
         current_user.age = form.age.data
+        current_user.pal = form.pal.data
         db.session.commit()
         flash("Your changes have been saved.")
         return redirect(url_for('profile_page', id=current_user.id))
@@ -73,6 +74,7 @@ def edit_profile():
         form.height.data = current_user.height
         form.sex.data = current_user.sex
         form.age.data = current_user.age
+        form.pal.data = current_user.pal
 
     return render_template('edit_profile.html', form=form)
 
