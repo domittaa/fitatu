@@ -1,14 +1,16 @@
-from werkzeug.security import generate_password_hash
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from app.forms import LoginForm, RegisterForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
+import os
+from werkzeug.utils import secure_filename
+import imghdr
 
 
 @app.route('/', methods=['GET'])
 @login_required
-def index():  # put application's code here
+def index(): 
     return render_template('index.html')
 
 
@@ -54,6 +56,15 @@ def profile_page(id):
     return render_template('profile_page.html', user=user)
 
 
+def validate_image(stream):
+    header = stream.read(512)
+    stream.seek(0)
+    format = imghdr.what(None, header)
+    if not format:
+        return None
+    return '.' + (format if format != 'jpeg' else 'jpg')
+
+
 @login_required
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_profile():
@@ -65,9 +76,21 @@ def edit_profile():
         current_user.sex = form.sex.data
         current_user.age = form.age.data
         current_user.pal = form.pal.data
+        uploaded_file = request.files['avatar']
+        filename = secure_filename(uploaded_file.filename)
+        if filename != '':
+            file_ext = os.path.splitext(filename)[1]
+            if file_ext not in app.config['UPLOAD_EXTENSIONS'] or \
+                    file_ext != validate_image(uploaded_file.stream):
+                flash('Invalid image!')
+                return redirect(url_for('edit_profile'))
+            uploaded_file.save(os.path.join(app.config['UPLOAD_AVATAR_PATH'], str(current_user.id)))
+            User.query.filter_by(id=current_user.id).update({"avatar": (filename)})
+            db.session.commit()
         db.session.commit()
         flash("Your changes have been saved.")
         return redirect(url_for('profile_page', id=current_user.id))
+
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.weight.data = current_user.weight

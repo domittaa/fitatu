@@ -18,6 +18,8 @@ class User(UserMixin, db.Model):
     sex = db.Column(db.String(64))
     age = db.Column(db.Integer)
     pal = db.Column(db.Integer)
+    avatar = db.Column(db.String(240))
+
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, SelectField, FileField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
 from app.models import User
 
@@ -33,6 +33,7 @@ class RegisterForm(FlaskForm):
 
 
 class EditProfileForm(FlaskForm):
+    avatar = FileField('Avatar')
     username = StringField('Username', validators=[DataRequired()])
     weight = IntegerField('Weight in kilograms')
     height = IntegerField('Height in centimeters')
