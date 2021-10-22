@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
-from app.forms import LoginForm, RegisterForm, EditProfileForm
+from app.forms import LoginForm, RegisterForm, EditProfileForm, BMIForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 import os
@@ -95,3 +95,16 @@ def edit_profile():
         form.pal.data = current_user.pal
 
     return render_template('edit_profile.html', form=form)
+
+
+@app.route('/bmi', methods=['GET', 'POST'])
+def bmi():
+    form = BMIForm()
+    if form.validate_on_submit():
+        weight = form.weight.data
+        height = form.height.data
+        bmi = round(weight/height**2,1)
+        flash(f"Your BMI is {bmi}. Check the table below for more informations.")
+    return render_template('bmi.html', form=form)
+
+

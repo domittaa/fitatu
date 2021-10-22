@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, SelectField, FileField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, SelectField, FileField, FloatField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError, Optional
 from app.models import User
 
@@ -51,4 +51,14 @@ class EditProfileForm(FlaskForm):
             user = User.query.filter_by(username=self.username.data).first()
             if user is not None:
                 raise ValidationError('Please use a different username.')
+
+
+class BMIForm(FlaskForm):
+    weight = IntegerField('Weight in kilograms', validators=[DataRequired()])
+    height = FloatField('Height in metres', validators=[DataRequired()])
+    submit = SubmitField('Calculate')
+
+
+
+
 

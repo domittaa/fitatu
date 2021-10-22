@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block app_content %}
+    <h1>Calculate your BMI</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.weight.label }}<br>
+            {{ form.weight(size=32) }}
+            {% for error in form.weight.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.height.label }}<br>
+            {{ form.height(size=32) }}
+            {% for error in form.height.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <table>
+  <tr>
+    <th>BMI value</th>
+    <th>Nutritional status</th>
+  </tr>
+  <tr>
+    <td>Below 18.5</td>
+    <td>Underweight </td>
+  </tr>
+  <tr>
+    <td>18.5-24.9</td>
+    <td>Normal weight</td>
+  </tr>
+  <tr>
+    <td>25-29.9</td>
+    <td>Pre-obesity</td>
+  </tr>
+  <tr>
+    <td>30-34.9</td>
+    <td>Obesity class I</td>
+  </tr>
+  <tr>
+    <td>35-39.9</td>
+    <td>Obesity class II</td>
+  </tr>
+        <tr>
+    <td>Above 40</td>
+    <td>Obesity class III</td>
+  </tr>
+</table>
+{% endblock %}
