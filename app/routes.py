@@ -68,14 +68,8 @@ def validate_image(stream):
 @login_required
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_profile():
-    form = EditProfileForm()
+    form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.weight = form.weight.data
-        current_user.height = form.height.data
-        current_user.sex = form.sex.data
-        current_user.age = form.age.data
-        current_user.pal = form.pal.data
         uploaded_file = request.files['avatar']
         filename = secure_filename(uploaded_file.filename)
         if filename != '':
@@ -85,8 +79,9 @@ def edit_profile():
                 flash('Invalid image!')
                 return redirect(url_for('edit_profile'))
             uploaded_file.save(os.path.join(app.config['UPLOAD_AVATAR_PATH'], str(current_user.id)))
-            User.query.filter_by(id=current_user.id).update({"avatar": (filename)})
-            db.session.commit()
+        User.query.filter_by(id=current_user.id).update(
+            {"avatar": (filename), "weight": (form.weight.data), "height": (form.height.data), "sex": (form.sex.data),
+             "age": (form.age.data), "pal": (form.pal.data)})
         db.session.commit()
         flash("Your changes have been saved.")
         return redirect(url_for('profile_page', id=current_user.id))
@@ -100,4 +95,3 @@ def edit_profile():
         form.pal.data = current_user.pal
 
     return render_template('edit_profile.html', form=form)
-

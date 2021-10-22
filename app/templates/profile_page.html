@@ -3,22 +3,25 @@
 {% block app_content %}
 {% if current_user == user %}
     {% if user.avatar %}
-    <img src="{{url_for('static', filename='avatars/' + user.id|string) }}"
+        <img src="{{url_for('static', filename='avatars/' + user.id|string) }}"
                 height="250" width="250" alt="avatar" loading="lazy" style=" border-radius: 50%;">
-        {% else %}
-            <img src="{{url_for('static', filename='avatars/' + 'default.png') }}"
+    {% else %}
+        <img src="{{url_for('static', filename='avatars/' + 'default.png') }}"
                 height="250" width="250" alt="avatar" loading="lazy" style=" border-radius: 50%;">
-        {% endif %}
+    {% endif %}
 
     <h1>{{ user.username }}</h1>
-            <a href="{{ url_for('edit_profile') }}">Edit Profile</a>
+
     <div>
-    <p>Age: {{ user.age }}</p>
-    <p>Height: {{ user.height }}</p>
-    <p>Weight: {{ user.weight }}</p>
-    <p>Sex: {{ user.sex }}</p>
-        <p>PAL: {{ user.pal }}</p>
+    <p>Age:{% if user.age %} {{ user.age }} {% else %} Not provided {% endif %}</p>
+    <p>Height: {% if user.height %} {{ user.height }} {% else %} Not provided {% endif %}</p>
+    <p>Weight: {% if user.weight %} {{ user.weight }} {% else %} Not provided {% endif %} </p>
+    <p>Sex: {% if user.sex %} {{ user.sex }} {% else %} Not provided {% endif %}</p>
+        <p>PAL: {% if user.pal %} {{ user.pal }} {% else %} Not provided {% endif %}</p>
     </div>
+
+    <a href="{{ url_for('edit_profile') }}">Add/ Edit informations about you.</a>
+
 
 {% endif %}
 {% endblock %}

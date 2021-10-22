@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
-    <h1>Edit profile</h1>
+    <h1>Edit informations about you:</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <p>
@@ -24,12 +24,12 @@
             {{ form.height(size=32) }}<br>
         </p>
         <p>
-            {{ form.sex.label }}<br>
-            {{ form.sex() }}<br>
-        </p>
-        <p>
             {{ form.age.label }}<br>
             {{ form.age(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.sex.label }}<br>
+            {{ form.sex() }}<br>
         </p>
         <p>
             {{ form.pal.label }}<br>
@@ -37,6 +37,7 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+    <a href="{{ url_for('profile_page', id=current_user.id)}}">Cancel</a>
     <h1>What is PAL?</h1>
     <p>Physical Activity Level (PAL) is a way to express a person's daily physical activity as a single number.
         If you don't know what is your PAL use a table:
