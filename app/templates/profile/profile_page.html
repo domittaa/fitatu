@@ -20,7 +20,7 @@
         <p>PAL: {% if user.pal %} {{ user.pal }} {% else %} Not provided {% endif %}</p>
     </div>
 
-    <a href="{{ url_for('edit_profile') }}">Add/ Edit informations about you.</a>
+    <a href="{{ url_for('profile.edit_profile') }}">Add/ Edit informations about you.</a>
 
 
 {% endif %}
