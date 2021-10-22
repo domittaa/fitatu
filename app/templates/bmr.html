@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block app_content %}
+    <h1>Calculate your BMR</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.weight.label }}<br>
+            {{ form.weight(size=32) }}
+            {% for error in form.weight.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.height.label }}<br>
+            {{ form.height(size=32) }}
+            {% for error in form.height.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.age.label }}<br>
+            {{ form.age(size=32) }}
+            {% for error in form.age.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.sex.label }}<br>
+            {{ form.sex() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <h1> What is BMR? </h1>
+    <p>Even when resting, your body burns calories by performing basic functions to sustain life, such as breathing,
+        circulation, nutrient processing or cell production. Basal metabolic rate (BMR) is the number of calories your
+        body needs to accomplish its most basic (basal) life-sustaining functions.</p>
+{% endblock %}

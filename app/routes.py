@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
-from app.forms import LoginForm, RegisterForm, EditProfileForm, BMIForm
+from app.forms import LoginForm, RegisterForm, EditProfileForm, BMIForm, BMRForm, TERForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 import os
@@ -106,5 +106,38 @@ def bmi():
         bmi = round(weight/height**2,1)
         flash(f"Your BMI is {bmi}. Check the table below for more informations.")
     return render_template('bmi.html', form=form)
+
+
+@app.route('/bmr', methods=['GET', 'POST'])
+def bmr():
+    form = BMRForm()
+    if form.validate_on_submit():
+        weight = form.weight.data
+        height = form.height.data
+        age = form.age.data
+        sex = form.sex.data
+        if sex == "Female":
+            bmr = round(655.1 + 9.563*weight + 1.85*height - 4.676*age,2)
+        else:
+            bmr = round(66.5 + 13.75*weight + 5.003*height - 6.775*age, 2)
+        flash(f"Your BMR is {bmr} calories per day.")
+    return render_template('bmr.html', form=form)
+
+
+@app.route('/ter', methods=['GET', 'POST'])
+def ter():
+    form = TERForm()
+    if form.validate_on_submit():
+        weight = form.weight.data
+        height = form.height.data
+        age = form.age.data
+        sex = form.sex.data
+        pal = float(form.pal.data)
+        if sex == "Female":
+            ter = round((655.1 + 9.563*weight + 1.85*height - 4.676*age)*pal, 2)
+        else:
+            ter = round((66.5 + 13.75*weight + 5.003*height - 6.775*age)*pal, 2)
+        flash(f"Your TER is {ter} calories per day.")
+    return render_template('ter.html', form=form)
 
 
