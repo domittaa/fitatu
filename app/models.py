@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,6 +21,8 @@ class User(UserMixin, db.Model):
     age = db.Column(db.Integer)
     pal = db.Column(db.Integer)
     avatar = db.Column(db.String(240))
+    portions = db.relationship('Portion', backref='user', lazy='dynamic')
+
 
 
     def __repr__(self):
@@ -38,3 +42,17 @@ class Food(db.Model):
     carbs = db.Column(db.Integer, nullable=False)
     fats = db.Column(db.Integer, nullable=False)
     calories = db.Column(db.Integer, nullable=False)
+
+
+class Portion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    portion = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String, nullable=False)
+    proteins = db.Column(db.Integer, nullable=False)
+    carbs = db.Column(db.Integer, nullable=False)
+    fats = db.Column(db.Integer, nullable=False)
+    calories = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    time = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+

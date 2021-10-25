@@ -10,13 +10,6 @@ from werkzeug.utils import secure_filename
 import imghdr
 
 
-@bp.route('/', methods=['GET'])
-@login_required
-def index():
-
-    return render_template('index.html')
-
-
 @login_required
 @bp.route('/user/<id>', methods=['GET', 'POST'])
 def profile_page(id):

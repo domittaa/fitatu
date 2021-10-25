@@ -1,5 +1,43 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Hello world!</h1>
-{% endblock %}
+    <h1>My food tracker</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.portion.label }}<br>
+            {{ form.portion(size=32) }}<br>
+            {% for error in form.portion.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <a href="{{ url_for('food.add') }}">Add product to database</a>
+
+    <table>
+  <tr>
+      <th>Name</th>
+      <th>Portion</th>
+      <th>Proteins</th>
+      <th>Carbs</th>
+      <th>Fats</th>
+      <th>Calories</th>
+  </tr>
+        {% for food in portion %}
+  <tr>
+        <td>{{ food.name }}</td>
+          <td>{{ food.portion }}</td>
+        <td>{{ food.proteins }}</td>
+        <td>{{ food.carbs }}</td>
+        <td>{{ food.fats }}</td>
+        <td>{{ food.calories }}</td>
+      {% endfor %}
+  </tr>
+    </table>
+
+ {% endblock %}
