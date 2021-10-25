@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>My food tracker</h1>
+    <h1>Add product:</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -27,6 +27,8 @@
       <th>Carbs</th>
       <th>Fats</th>
       <th>Calories</th>
+      <th> Delete </th>
+
   </tr>
         {% for food in portion %}
   <tr>
@@ -36,8 +38,19 @@
         <td>{{ food.carbs }}</td>
         <td>{{ food.fats }}</td>
         <td>{{ food.calories }}</td>
+            <td>
+                <a href="{{ url_for('food.delete', id=food.id) }}">Delete</a>
+            </td>
       {% endfor %}
   </tr>
+    <tr>
+        <td><b>Sum</b></td>
+        <td>{{  portion_sum }}</td>
+        <td>{{  proteins_sum }}</td>
+        <td>{{  carbs_sum }}</td>
+        <td>{{  fats_sum }}</td>
+        <td>{{  calories_sum}}</td>
+    </tr>
     </table>
 
  {% endblock %}

@@ -50,6 +50,20 @@ def index():
             db.session.commit()
 
     portion = Portion.query.filter_by(user_id=current_user.id).all()
+    calories_sum = round(sum([i.calories for i in portion]), 2)
+    portion_sum = round(sum([i.portion for i in portion]), 2)
+    proteins_sum = round(sum([i.proteins for i in portion]), 2)
+    carbs_sum = round(sum([i.carbs for i in portion]), 2)
+    fats_sum = round(sum([i.fats for i in portion]), 2)
 
-    return render_template('index.html', form=form, portion=portion)
+    return render_template('index.html', form=form, portion=portion, calories_sum=calories_sum,
+                           portion_sum=portion_sum, proteins_sum=proteins_sum, carbs_sum=carbs_sum, fats_sum=fats_sum)
 
+
+@bp.route('/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def delete(id):
+    id = Portion.query.filter_by(id=id).first_or_404()
+    db.session.delete(id)
+    db.session.commit()
+    return redirect(url_for('food.index'))
