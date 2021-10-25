@@ -29,3 +29,12 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+
+class Food(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    proteins = db.Column(db.Integer, nullable=False)
+    carbs = db.Column(db.Integer, nullable=False)
+    fats = db.Column(db.Integer, nullable=False)
+    calories = db.Column(db.Integer, nullable=False)

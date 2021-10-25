@@ -12,7 +12,8 @@ import imghdr
 
 @bp.route('/', methods=['GET'])
 @login_required
-def index(): 
+def index():
+
     return render_template('index.html')
 
 

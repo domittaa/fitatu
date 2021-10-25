@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block app_content %}
+    <h1>Add food:</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.proteins.label }}<br>
+            {{ form.proteins(size=32) }}<br>
+            {% for error in form.proteins.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.carbs.label }}<br>
+            {{ form.carbs(size=32) }}<br>
+            {% for error in form.carbs.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.fats.label }}<br>
+            {{ form.fats(size=32) }}<br>
+            {% for error in form.fats.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <table>
+  <tr>
+    <th>Name</th>
+    <th>Proteins</th>
+    <th>Carbs</th>
+      <th>Fats</th>
+      <th>Calories</th>
+  </tr>
+  <tr>
+      {% for food in food %}
+    <td>{{ food.name }}</td>
+    <td>{{ food.proteins }}</td>
+    <td>{{ food.carbs }}</td>
+      <td>{{ food.fats }}</td>
+      <td>{{ food.calories }}</td>
+      {% endfor %}
+  </tr>
+    </table>
+
+ {% endblock %}

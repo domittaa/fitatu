@@ -24,7 +24,7 @@ def login():
 @bp.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('profile.index'))
+    return redirect(url_for('auth.login'))
 
 
 @bp.route('/register', methods=['GET', 'POST'])
