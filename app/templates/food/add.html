@@ -39,8 +39,8 @@
       <th>Fats</th>
       <th>Calories</th>
   </tr>
+              {% for food in food %}
   <tr>
-      {% for food in food %}
     <td>{{ food.name }}</td>
     <td>{{ food.proteins }}</td>
     <td>{{ food.carbs }}</td>

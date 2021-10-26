@@ -5,9 +5,9 @@ from wtforms.validators import DataRequired
 
 class FoodForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    proteins = FloatField('Proteins', validators=[DataRequired()])
-    carbs = FloatField('Carbs', validators=[DataRequired()])
-    fats = FloatField('Fats', validators=[DataRequired()])
+    proteins = FloatField('Proteins')
+    carbs = FloatField('Carbs')
+    fats = FloatField('Fats')
     submit = SubmitField('Submit')
 
 
