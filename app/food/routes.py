@@ -1,6 +1,7 @@
-from datetime import datetime
+from datetime import datetime, date
 
 from flask import url_for, redirect, render_template, flash
+from sqlalchemy import extract
 
 from app.food import bp
 from app import db
@@ -27,9 +28,9 @@ def add():
     return render_template('food/add.html', form=form, food=food)
 
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/<time>', methods=['GET', 'POST'])
 @login_required
-def index():
+def index(time):
     form = FoodTracker()
     if form.validate_on_submit():
         name = form.name.data.capitalize()
@@ -37,19 +38,29 @@ def index():
         check = Food.query.filter_by(name=name).first()
         if check is None:
             flash(f'No {name} in our database. Use link below to add {name} to our database.')
-            return redirect(url_for('food.index'))
+            return redirect(url_for('food.index', time='today'))
         else:
             proteins = check.proteins*portion/100
             carbs = check.carbs*portion/100
             fats = check.fats*portion/100
             calories = check.calories*portion/100
             food = Portion(name=name, portion=portion, proteins=proteins, carbs=carbs, fats=fats, calories=calories,
-                           user=current_user, time=datetime.utcnow())
+                           user=current_user, time=date.today())
 
             db.session.add(food)
             db.session.commit()
 
-    portion = Portion.query.filter_by(user_id=current_user.id).all()
+    now = datetime.utcnow()
+    if time == 'today':
+        portion = Portion.query.filter(extract('year', Portion.time) == now.year, extract('month', Portion.time) == now.month,
+                                       extract('day', Portion.time) == now.day).filter_by(user_id=current_user.id).all()
+    elif time == 'yesterday':
+        portion = Portion.query.filter(extract('year', Portion.time) == now.year, extract('month', Portion.time) == now.month,
+                                       extract('day', Portion.time) == now.day-1).filter_by(user_id=current_user.id).all()
+    elif time == 'tomorrow':
+        portion = Portion.query.filter(extract('year', Portion.time) == now.year, extract('month', Portion.time) == now.month,
+                                       extract('day', Portion.time) == now.day+1).filter_by(user_id=current_user.id).all()
+
     calories_sum = round(sum([i.calories for i in portion]), 2)
     portion_sum = round(sum([i.portion for i in portion]), 2)
     proteins_sum = round(sum([i.proteins for i in portion]), 2)
@@ -66,4 +77,4 @@ def delete(id):
     id = Portion.query.filter_by(id=id).first_or_404()
     db.session.delete(id)
     db.session.commit()
-    return redirect(url_for('food.index'))
+    return redirect(url_for('food.index', time='today'))

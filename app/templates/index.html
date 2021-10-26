@@ -18,7 +18,16 @@
         <p>{{ form.submit() }}</p>
     </form>
     <a href="{{ url_for('food.add') }}">Add product to database</a>
-
+<h4>
+       <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">Time <span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a href="{{ url_for('food.index', time='today') }}">Today</a></li>
+            <li><a href="{{ url_for('food.index', time='yesterday') }}">Yesterday</a></li>
+            <li><a href="{{ url_for('food.index', time='tomorrow') }}">Tomorrow</a></li>
+        </ul></div></h4>
+    <br>
     <table>
   <tr>
       <th>Name</th>
