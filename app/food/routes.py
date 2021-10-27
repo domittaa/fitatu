@@ -78,3 +78,12 @@ def delete(id):
     db.session.delete(id)
     db.session.commit()
     return redirect(url_for('food.index', time='today'))
+
+@bp.route('/product/<name>',methods=['GET', 'POST'])
+@login_required
+def product(name):
+    product = Food.query.filter_by(name=name).first_or_404()
+    if not product:
+        flash(f'There is no {name} in our database')
+        return redirect(url_for('shopping.fridge'))
+    return render_template('food/product.html', product=product)

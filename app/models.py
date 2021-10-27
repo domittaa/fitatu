@@ -22,6 +22,7 @@ class User(UserMixin, db.Model):
     avatar = db.Column(db.String(240))
     portions = db.relationship('Portion', backref='user', lazy='dynamic')
     list = db.relationship('List', backref='user', lazy='dynamic')
+    fridge = db.relationship('Fridge', backref='user', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -40,6 +41,7 @@ class Food(db.Model):
     carbs = db.Column(db.Integer, nullable=False)
     fats = db.Column(db.Integer, nullable=False)
     calories = db.Column(db.Integer, nullable=False)
+    fridge = db.relationship('Fridge', backref='product', lazy='dynamic')
 
 
 class Portion(db.Model):
@@ -57,7 +59,7 @@ class Portion(db.Model):
 class List(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    products = db.relationship('ListProduct', backref='shopping', lazy='dynamic')
+    products = db.relationship('ListProduct', backref='list', lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
@@ -67,5 +69,15 @@ class ListProduct(db.Model):
     quantity = db.Column(db.Integer)
     status = db.Column(db.Boolean)
     list_id = db.Column(db.Integer, db.ForeignKey('list.id'))
+
+
+class Fridge(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    quantity = db.Column(db.Integer)
+    expired_date = db.Column(db.Date)
+    category = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    food_id = db.Column(db.Integer, db.ForeignKey('food.id'))
 
 
