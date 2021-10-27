@@ -9,7 +9,13 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+    <br>
     {% for list in lists %}
-    {{ list.name }}
+        <ul>
+        <li>
+            <a href="{{ url_for('list.view_list', id=list.id) }}"> {{ list.name }}</a>
+            <a href="{{ url_for('list.delete_list', id=list.id) }}"> (Delete list)</a>
+        </li>
+        </ul>
     {% endfor %}
 {% endblock %}

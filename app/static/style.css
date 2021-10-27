@@ -58,11 +58,15 @@ th {
     box-shadow: none!important;
 }
 
-h4,h2 {
+h4,h2, h1 {
     color: RGB(132,152,182);
 }
 
 a {
+    color: RGB(203,141,153);
+}
+
+p {
     color: RGB(203,141,153);
 }
 
