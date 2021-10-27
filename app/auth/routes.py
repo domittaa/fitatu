@@ -19,7 +19,7 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('auth.login'))
         login_user(user, remember=form.remember_me.data)
-        return redirect(url_for('food.index', time='today'))
+        return redirect(url_for('profile.index'))
     return render_template('auth/login.html', form=form)
 
 

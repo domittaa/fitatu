@@ -28,9 +28,9 @@ def add():
     return render_template('food/add.html', form=form, food=food)
 
 
-@bp.route('/<time>', methods=['GET', 'POST'])
+@bp.route('/tracker/<time>', methods=['GET', 'POST'])
 @login_required
-def index(time):
+def tracker(time):
     form = FoodTracker()
     if form.validate_on_submit():
         name = form.name.data.capitalize()
@@ -38,7 +38,7 @@ def index(time):
         check = Food.query.filter_by(name=name).first()
         if check is None:
             flash(f'No {name} in our database. Use link below to add {name} to our database.')
-            return redirect(url_for('food.index', time='today'))
+            return redirect(url_for('food.tracker', time='today'))
         else:
             proteins = check.proteins*portion/100
             carbs = check.carbs*portion/100
@@ -67,7 +67,7 @@ def index(time):
     carbs_sum = round(sum([i.carbs for i in portion]), 2)
     fats_sum = round(sum([i.fats for i in portion]), 2)
 
-    return render_template('index.html', form=form, portion=portion, calories_sum=calories_sum,
+    return render_template('tracker.html', form=form, portion=portion, calories_sum=calories_sum,
                            portion_sum=portion_sum, proteins_sum=proteins_sum, carbs_sum=carbs_sum, fats_sum=fats_sum)
 
 

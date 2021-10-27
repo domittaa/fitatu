@@ -19,6 +19,11 @@ import base64
 
 
 @login_required
+@bp.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('profile/index.html')
+
+@login_required
 @bp.route('/user/<id>', methods=['GET', 'POST'])
 def profile_page(id):
     user = User.query.filter_by(id=id).first()
