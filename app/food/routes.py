@@ -67,7 +67,7 @@ def tracker(time):
     carbs_sum = round(sum([i.carbs for i in portion]), 2)
     fats_sum = round(sum([i.fats for i in portion]), 2)
 
-    return render_template('tracker.html', form=form, portion=portion, calories_sum=calories_sum,
+    return render_template('food/tracker.html', form=form, portion=portion, calories_sum=calories_sum,
                            portion_sum=portion_sum, proteins_sum=proteins_sum, carbs_sum=carbs_sum, fats_sum=fats_sum)
 
 

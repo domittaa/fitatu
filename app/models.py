@@ -22,8 +22,7 @@ class User(UserMixin, db.Model):
     pal = db.Column(db.Integer)
     avatar = db.Column(db.String(240))
     portions = db.relationship('Portion', backref='user', lazy='dynamic')
-
-
+    list = db.relationship('List', backref='user', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -54,5 +53,20 @@ class Portion(db.Model):
     calories = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     time = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+
+class List(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    products = db.relationship('ListProduct', backref='list', lazy='dynamic')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class ListProduct(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    quantity = db.Column(db.Integer)
+    status = db.Column(db.Boolean)
+    list_id = db.Column(db.Integer, db.ForeignKey('list.id'))
 
 

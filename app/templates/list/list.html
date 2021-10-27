@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block app_content %}
+     <h1>Create new list:</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% for list in lists %}
+    {{ list.name }}
+    {% endfor %}
+{% endblock %}
