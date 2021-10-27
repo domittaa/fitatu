@@ -33,8 +33,8 @@ def create_app(config_class=Config):
     from app.food import bp as food_bp
     app.register_blueprint(food_bp)
 
-    from app.list import bp as list_bp
-    app.register_blueprint(list_bp)
+    from app.shopping import bp as shopping_bp
+    app.register_blueprint(shopping_bp)
 
     return app
 

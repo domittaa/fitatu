@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block app_content %}
+    <h1>Add product to {{ list.name }} list</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.quantity.label }}<br>
+            {{ form.quantity(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+       <table>
+          <tr>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Check</th>
+              <th>Delete</th>
+          </tr>
+           {% for product in products %}
+               {% if product.status==True %}
+               <tr>
+               <td>{{ product.name }}</td>
+                   {% if product.quantity %}
+               <td>{{ product.quantity }}</td>
+                       {% else %}
+                       <td> </td>
+                       {% endif %}
+               <td>
+                   <form action="{{ url_for('shopping.move_to_bought', id=product.id) }}">
+                       <input type="submit" value="" id="check"/>
+                   </form>
+               </td>
+               <td>
+                   <form action="{{ url_for('shopping.delete_product', id=product.id) }}">
+                       <input type="submit" value="X" id="check" />
+                   </form>
+               </td>
+               </tr>
+               {% else %}
+               <tr class="strikeout">
+               <td>{{ product.name }}</td>
+               <td>{{ product.quantity }}</td>
+               <td>
+                   <form action="{{ url_for('shopping.move_to_bought', id=product.id) }}">
+                       <input type="submit" value="" id="bought"/>
+                   </form>
+               </td>
+               <td>
+                   <form action="{{ url_for('shopping.delete_product', id=product.id) }}">
+                       <input type="submit" value="X" id="check" />
+                   </form>
+               </td>
+               </tr>
+               {% endif %}
+           {% endfor %}
+       </table>
+    <br>
+    <a href="{{ url_for('shopping.list') }}">Go back to my lists</a>
+
+{% endblock %}

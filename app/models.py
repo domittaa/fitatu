@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from app import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -58,7 +57,7 @@ class Portion(db.Model):
 class List(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    products = db.relationship('ListProduct', backref='list', lazy='dynamic')
+    products = db.relationship('ListProduct', backref='shopping', lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 

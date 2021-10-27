@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block app_content %}
-     <h1>Create new list:</h1>
+    <h1>Create new list:</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -10,11 +10,12 @@
         <p>{{ form.submit() }}</p>
     </form>
     <br>
+    <h1>My lists:</h1>
     {% for list in lists %}
         <ul>
         <li>
-            <a href="{{ url_for('list.view_list', id=list.id) }}"> {{ list.name }}</a>
-            <a href="{{ url_for('list.delete_list', id=list.id) }}"> (Delete list)</a>
+            <a href="{{ url_for('shopping.view_list', id=list.id) }}"> {{ list.name }}</a>
+            <a href="{{ url_for('shopping.delete_list', id=list.id) }}"> (Delete list)</a>
         </li>
         </ul>
     {% endfor %}

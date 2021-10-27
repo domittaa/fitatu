@@ -6,7 +6,7 @@ from app import db
 from flask import current_app
 from app.profile import bp
 from flask import render_template, flash, redirect, url_for, request
-from app.profile.profile import EditProfileForm
+from app.profile.forms import EditProfileForm
 from flask_login import current_user, login_required
 from app.models import User, Portion
 import os
