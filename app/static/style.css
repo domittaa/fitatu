@@ -1,5 +1,5 @@
 td, th {
-  width: 20rem;
+  width: 30rem;
   height: 5rem;
   border: 1px solid #ccc;
   text-align: center;
@@ -69,7 +69,7 @@ tr.strikeout td:before {
     box-shadow: none!important;
 }
 
-h4,h2, h1 {
+h4,h2, h1, h3 {
     color: RGB(132,152,182);
 }
 

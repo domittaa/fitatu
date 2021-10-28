@@ -32,22 +32,36 @@
     </form>
 
     <table>
-  <tr>
-    <th>Name</th>
-    <th>Proteins</th>
-    <th>Carbs</th>
-      <th>Fats</th>
-      <th>Calories</th>
-  </tr>
-              {% for food in food %}
-  <tr>
-    <td>{{ food.name }}</td>
-    <td>{{ food.proteins }}</td>
-    <td>{{ food.carbs }}</td>
-      <td>{{ food.fats }}</td>
-      <td>{{ food.calories }}</td>
+    <tr>
+        <th>Name</th>
+        <th>Proteins</th>
+        <th>Carbs</th>
+        <th>Fats</th>
+        <th>Calories</th>
+    </tr>
+        {% for food in food %}
+    <tr>
+            <td>{{ food.name }}</td>
+            <td>{{ food.proteins }}</td>
+            <td>{{ food.carbs }}</td>
+            <td>{{ food.fats }}</td>
+            <td>{{ food.calories }}</td>
       {% endfor %}
-  </tr>
+    </tr>
     </table>
 
+<nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a style="color: rgb(127,196,196);" href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span>
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a style="color: rgb(127,196,196);" href="{{ next_url or '#' }}">
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
  {% endblock %}

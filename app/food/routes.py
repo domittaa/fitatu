@@ -1,10 +1,10 @@
 from datetime import datetime, date
-from flask import url_for, redirect, render_template, flash
+from flask import url_for, redirect, render_template, flash, request, current_app
 from sqlalchemy import extract
 from app.food import bp
 from app import db
 from app.models import Food, Portion
-from app.food.forms import FoodForm, FoodTracker, DateForm
+from app.food.forms import FoodForm, FoodTracker, DateForm, SearchForm
 from flask_login import login_required, current_user
 
 
@@ -12,18 +12,29 @@ from flask_login import login_required, current_user
 @bp.route('/add', methods=['GET', 'POST'])
 def add():
     form = FoodForm()
+    page = request.args.get('page', 1, type=int)
+
     if form.validate_on_submit():
         name = form.name.data.capitalize()
         proteins = form.proteins.data
         carbs = form.carbs.data
         fats = form.fats.data
-        calories = proteins*4 + fats*9 + carbs*4
-        food = Food(name=name, proteins=proteins, carbs=carbs, fats=fats, calories=calories)
-        db.session.add(food)
-        db.session.commit()
+        calories = round(proteins*4 + fats*9 + carbs*4, 2)
+        check_if_product_in_database = Food.query.filter_by(name=name).first_or_404()
+        if check_if_product_in_database is None:
+            add_product = Food(name=name, proteins=proteins, carbs=carbs, fats=fats, calories=calories)
+            db.session.add(add_product)
+            db.session.commit()
+        else:
+            flash(f'{check_if_product_in_database.name} already in database!')
         return redirect(url_for('food.add'))
-    food = Food.query.all()
-    return render_template('food/add.html', form=form, food=food)
+
+    products = Food.query.order_by('name').paginate(page, current_app.config['ITEMS_PER_PAGE'], False)
+    next_url = url_for('food.add', page=products.next_num) if products.has_next else None
+    prev_url = url_for('food.add', page=products.prev_num) if products.has_prev else None
+
+    return render_template('food/add.html', form=form, food=products.items,
+                           next_url=next_url, prev_url=prev_url)
 
 
 @bp.route('/tracker', defaults={'time': datetime.today().strftime('%Y-%m-%d')}, methods=['GET', 'POST'])
@@ -66,7 +77,13 @@ def tracker(time):
 
     return render_template('food/tracker.html', form=form, portion=portion, calories_sum=calories_sum, now=now,
                            portion_sum=portion_sum, proteins_sum=proteins_sum, carbs_sum=carbs_sum, fats_sum=fats_sum,
-                           date_form=date_form)
+                           date_form=date_form, time=time)
+
+
+def redirect_url(default='index'):
+    return request.args.get('next') or \
+           request.referrer or \
+           url_for(default)
 
 
 @bp.route('/delete/<id>', methods=['GET', 'POST'])
@@ -75,14 +92,4 @@ def delete(id):
     id = Portion.query.filter_by(id=id).first_or_404()
     db.session.delete(id)
     db.session.commit()
-    return redirect(url_for('food.index', time=datetime.utcnow()))
-
-
-@bp.route('/product/<name>', methods=['GET', 'POST'])
-@login_required
-def product(name):
-    product = Food.query.filter_by(name=name).first_or_404()
-    if not product:
-        flash(f'There is no {name} in our database')
-        return redirect(url_for('shopping.fridge'))
-    return render_template('food/product.html', product=product)
+    return redirect(redirect_url())

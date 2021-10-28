@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block app_content %}
+
 <h1>Add products to fridge:</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
@@ -22,27 +23,29 @@
         <p>{{ form.submit() }}</p>
     </form>
 
-<table>
-          <tr>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Expire date</th>
-              <th>Category</th>
-              <th>Delete</th>
-          </tr>
-           {% for product in products %}
-               <tr>
-                   <td><a href="{{ url_for('food.product', name=product.name) }}">{{ product.name }}</a></td>
-                   {% if product.quantity %}
-               <td>{{ product.quantity }}</td>
-                       {% else %}
-                       <td> </td>
-                       {% endif %}
-               {% if product.expired_date %}
-               <td>{{ product.expired_date }}</td>
-               {% else %}
-               <td> </td>
-               {% endif %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Expire date</th>
+            <th>Category</th>
+            <th>Delete</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                {% if product.quantity %}
+                    <td>{{ product.quantity }}</td>
+                {% else %}
+                    <td> </td>
+                {% endif %}
+                {% if product.expired_date and product.expired_date > now%}
+                    <td>{{ product.expired_date }}</td>
+                    {% elif product.expired_date  and  product.expired_date <= now %}
+                    <td style="color: red">{{ product.expired_date }}</td>
+                {% else %}
+                    <td> </td>
+                {% endif %}
                <td>{{ product.category }}</td>
                <td>
                    <form action="{{ url_for('shopping.delete_product_from_fridge', id=product.id) }}">
@@ -50,6 +53,6 @@
                    </form>
                </td>
                </tr>
-            {% endfor %}
-</table>
+        {% endfor %}
+    </table>
 {% endblock %}

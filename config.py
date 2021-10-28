@@ -9,4 +9,5 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_AVATAR_PATH = 'app/static/avatars'
     UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif']
+    ITEMS_PER_PAGE = 5
     MAX_CONTENT_LENGTH = 1024 * 1024
