@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, SubmitField, IntegerField
+from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired
 
 
@@ -15,3 +16,9 @@ class FoodTracker(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     portion = IntegerField('Portion in grams:', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class DateForm(FlaskForm):
+    date = DateField('Time', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+

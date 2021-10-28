@@ -17,17 +17,10 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-    <a href="{{ url_for('food.add') }}">Add product to database</a>
-<h4>
-       <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-               aria-haspopup="true" aria-expanded="false">Time <span class="caret"></span></a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a href="{{ url_for('food.tracker', time='today') }}">Today</a></li>
-            <li><a href="{{ url_for('food.tracker', time='yesterday') }}">Yesterday</a></li>
-            <li><a href="{{ url_for('food.tracker', time='tomorrow') }}">Tomorrow</a></li>
-        </ul></div></h4>
+    <a href="{{ url_for('food.add') }}">Can't find your product? Add product to database</a>
+
     <br>
+    <h1>My day:</h1>
     <table>
   <tr>
       <th>Name</th>
@@ -61,5 +54,15 @@
         <td>{{  calories_sum}}</td>
     </tr>
     </table>
+    <br>
+    <h4>Choose different day:</h4>
+    <form action="" method="post">
+        {{ date_form.hidden_tag() }}
+        <p>
+            {{ date_form.date.label }}<br>
+            {{ date_form.date() }}
+        </p>
+        <p>{{ date_form.submit() }}</p>
+    </form>
 
  {% endblock %}
