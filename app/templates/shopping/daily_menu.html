@@ -23,8 +23,50 @@
         </p>
     </form>
 
-    {% for dish in dishes %}
-        {{ dish.name }}
-    {% endfor %}
+    <h3>Meal Plan for {{ date }}: </h3>
+    <table>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>In fridge</th>
+        <th>Must buy</th>
+        <th>Calories</th>
+        <th>Recipe</th>
+    </tr>
+    <tr>
+        <th>Breakfast</th>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Breakfast' %}
+            {{ dish.name }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Breakfast' %}
+            {{ dish.products }}
+            {% endif %}
+            {% endfor %}
+        </td>
+
+    </tr>
+        <tr>
+            <th>Second breakfast</th>
+        </tr>
+        <tr>
+            <th>Second breakfast</th>
+        </tr>
+        <tr>
+            <th>Lunch</th>
+        </tr>
+        <tr>
+            <th>Dessert</th>
+        </tr>
+        <tr>
+            <th>Dinner</th>
+        </tr>
+    </table>
 
 {% endblock %}
