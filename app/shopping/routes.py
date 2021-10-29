@@ -1,12 +1,11 @@
-from datetime import datetime
-
+from datetime import datetime, date, timedelta
 from flask import url_for, redirect, render_template, flash
 from sqlalchemy import desc
 from app.shopping import bp
 from app import db
-from app.models import List, ListProduct, Fridge
+from app.models import List, ListProduct, Fridge, Menu, Portion
 from flask_login import login_required, current_user
-from app.shopping.forms import ListForm, ListProductForm, FridgeForm
+from app.shopping.forms import ListForm, ListProductForm, FridgeForm, MenuForm
 
 
 @bp.route('/list ', methods=['GET', 'POST'])
@@ -89,3 +88,67 @@ def delete_product_from_fridge(id):
     db.session.delete(product)
     db.session.commit()
     return redirect(url_for('shopping.fridge'))
+
+
+@bp.route('/week_menu', methods=['GET', 'POST'])
+@login_required
+def week_menu():
+    today = date.today()
+    if today.weekday() == 0:
+        monday = today
+        tuesday = monday + timedelta(days=1)
+        wednesday = tuesday + timedelta(days=1)
+        thursday = wednesday + timedelta(days=1)
+        friday = thursday + timedelta(days=1)
+        saturday = friday + timedelta(days=1)
+        sunday = saturday + timedelta(days=1)
+
+        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
+                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday, breakfast=breakfast)
+
+    elif today.weekday() == 4:
+        friday = today
+        monday = today - timedelta(days=4)
+        tuesday = today - timedelta(days=3)
+        wednesday = today - timedelta(days=2)
+        thursday = today - timedelta(days=1)
+        saturday = today + timedelta(days=1)
+        sunday = saturday + timedelta(days=1)
+        menu_monday = Menu.query.filter_by(date=monday).all()
+        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
+        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
+        menu_thursday = Menu.query.filter_by(date=thursday).all()
+        menu_friday = Menu.query.filter_by(date=friday).all()
+        menu_sunday = Menu.query.filter_by(date=sunday).all()
+        menu_saturday = Menu.query.filter_by(date=saturday).all()
+
+        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
+                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
+                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
+                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
+                               menu_sunday=menu_sunday)
+
+
+@bp.route('/daily_menu/<day>', methods=['GET', 'POST'])
+@login_required
+def daily_menu(day):
+    form = MenuForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        products = form.products.data
+        category = form.category.data
+        # calories_sum = 0
+        # for product in products:
+        #     calories = Portion.query.with_entities(Portion.calories).filter(Portion.name == product).first()
+        #     if calories:
+        #         calories_sum += calories
+        #     else:
+        #         flash(f'{product} not in database')
+        dish = Menu(name=name, products=products, date=datetime.strptime(day, '%Y-%m-%d').date(),
+                    category=category, user=current_user)
+
+        db.session.add(dish)
+        db.session.commit()
+        return redirect(url_for('shopping.daily_menu', day=dish.date))
+    dishes = Menu.query.filter_by(date=day).all()
+    return render_template('shopping/daily_menu.html', form=form, dishes=dishes)

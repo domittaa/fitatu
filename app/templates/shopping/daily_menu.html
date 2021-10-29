@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block app_content %}
+    <h1>Add meal:</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.products.label }}<br>
+            {{ form.products(size=32) }}<br>
+            {% for error in form.products.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.category.label }}<br>
+            {{ form.category() }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    {% for dish in dishes %}
+        {{ dish.name }}
+    {% endfor %}
+
+{% endblock %}

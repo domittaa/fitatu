@@ -20,7 +20,7 @@ def add():
         carbs = form.carbs.data
         fats = form.fats.data
         calories = round(proteins*4 + fats*9 + carbs*4, 2)
-        check_if_product_in_database = Food.query.filter_by(name=name).first_or_404()
+        check_if_product_in_database = Food.query.filter_by(name=name).first()
         if check_if_product_in_database is None:
             add_product = Food(name=name, proteins=proteins, carbs=carbs, fats=fats, calories=calories)
             db.session.add(add_product)
@@ -93,3 +93,5 @@ def delete(id):
     db.session.delete(id)
     db.session.commit()
     return redirect(redirect_url())
+
+

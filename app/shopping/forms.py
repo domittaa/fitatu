@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, SelectField
+from wtforms import StringField, IntegerField, SubmitField, SelectField, FieldList
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Optional
 
@@ -21,3 +21,11 @@ class FridgeForm(FlaskForm):
     expired_date = DateField('Expired date',validators=[Optional()], format='%Y-%m-%d')
     category = SelectField('Category', choices=['Grains', 'Vegetables', 'Fruits', 'Dairy', 'Meat', 'Drinks'])
     submit = SubmitField('Add product')
+
+
+class MenuForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    products = StringField('Product:', validators=[DataRequired()])
+    category = SelectField('Category', choices=['Breakfast', 'Second breakfast', 'Lunch', 'Dessert', 'Dinner'])
+    submit = SubmitField('Sumbit')
+

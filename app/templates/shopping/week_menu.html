@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <table>
+        <tr>
+            <th></th>
+            <th>
+                Monday <br>
+                {{ monday }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=monday) }}">Edit</a>
+            </th>
+            <th>
+                Tuesday <br>
+                {{ tuesday }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=tuesday) }}">Edit</a>
+            </th>
+            <th>
+                Wednesday<br>
+                {{ wednesday }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=wednesday) }}">Edit</a>
+            </th>
+            <th>Thursday<br>
+                {{ thursday }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=thursday) }}">Edit</a>
+            </th>
+            <th>Friday<br>
+                {{ friday }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=friday) }}">Edit</a>
+            </th>
+            <th>Saturday<br>
+                {{ saturday }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=saturday) }}">Edit</a>
+            </th>
+            <th>Sunday<br>
+                {{ sunday }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=sunday) }}">Edit</a>
+            </th>
+        </tr>
+        <tr>
+            <th>Breakfast</th>
+            <td>
+                {% for dish in menu_monday %}
+                    {% if dish.category == 'Breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_tuesday %}
+                    {% if dish.category == 'Breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_wednesday %}
+                    {% if dish.category == 'Breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_thursday %}
+                    {% if dish.category == 'Breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_friday %}
+                    {% if dish.category == 'Breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_saturday %}
+                    {% if dish.category == 'Breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_sunday %}
+                    {% if dish.category == 'Breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Second breakfast</th>
+            <td>
+                {% for dish in menu_monday %}
+                    {% if dish.category == 'Second breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_tuesday %}
+                    {% if dish.category == 'Second breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_wednesday %}
+                    {% if dish.category == 'Second breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_thursday %}
+                    {% if dish.category == 'Second breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_friday %}
+                    {% if dish.category == 'Second breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_saturday %}
+                    {% if dish.category == 'Second breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_sunday %}
+                    {% if dish.category == 'Second breakfast' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Lunch</th>
+            <td>
+                {% for dish in menu_monday %}
+                    {% if dish.category == 'Lunch' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_tuesday %}
+                    {% if dish.category == 'Lunch' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_wednesday %}
+                    {% if dish.category == 'Lunch' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_thursday %}
+                    {% if dish.category == 'Lunch' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_friday %}
+                    {% if dish.category == 'Lunch' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_saturday %}
+                    {% if dish.category == 'Lunch' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_sunday %}
+                    {% if dish.category == 'Lunch' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Dessert</th>
+            <td>
+                {% for dish in menu_monday %}
+                    {% if dish.category == 'Dessert' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_tuesday %}
+                    {% if dish.category == 'Dessert' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_wednesday %}
+                    {% if dish.category == 'Dessert' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_thursday %}
+                    {% if dish.category == 'Dessert' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_friday %}
+                    {% if dish.category == 'Dessert' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_saturday %}
+                    {% if dish.category == 'Dessert' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_sunday %}
+                    {% if dish.category == 'Dessert' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Dinner</th>
+            <td>
+                {% for dish in menu_monday %}
+                    {% if dish.category == 'Dinner' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_tuesday %}
+                    {% if dish.category == 'Dinner' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_wednesday %}
+                    {% if dish.category == 'Dinner' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_thursday %}
+                    {% if dish.category == 'Dinner' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_friday %}
+                    {% if dish.category == 'Dinner' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_saturday %}
+                    {% if dish.category == 'Dinner' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for dish in menu_sunday %}
+                    {% if dish.category == 'Dinner' %}
+                        {{ dish.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+</table>
+{% endblock %}
