@@ -25,6 +25,12 @@ class EditProfileForm(FlaskForm):
                 raise ValidationError('Please use a different username.')
 
 
+class SelectDateForm(FlaskForm):
+    month = SelectField('Choose month:')
+    year = SelectField('Choose year:')
+    submit = SubmitField('Sumbit')
+
+
 
 
 
