@@ -31,7 +31,6 @@
         <th>Ingredients</th>
         <th>In fridge</th>
         <th>Must buy</th>
-        <th>Calories</th>
         <th>Recipe</th>
     </tr>
     <tr>
@@ -50,22 +49,118 @@
             {% endif %}
             {% endfor %}
         </td>
+        <td>
+            {{ in_fridge['Breakfast']  }} <br>
+        </td>
+        <td>
+            {{must_buy['Breakfast'] }}
+        </td>
+        <td>
+
+        </td>
 
     </tr>
         <tr>
             <th>Second breakfast</th>
-        </tr>
-        <tr>
-            <th>Second breakfast</th>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Second breakfast' %}
+            {{ dish.name }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Second breakfast' %}
+            {{ dish.products }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {{ in_fridge['Second breakfast']  }} <br>
+        </td>
+        <td>
+            {{must_buy['Second breakfast'] }}
+        </td>
+        <td>
+        </td>
         </tr>
         <tr>
             <th>Lunch</th>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Lunch' %}
+            {{ dish.name }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Lunch' %}
+            {{ dish.products }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {{ in_fridge['Lunch'] }} <br>
+        </td>
+        <td>
+            {{ must_buy['Lunch'] }}
+        </td>
+        <td>
+
+        </td>
         </tr>
         <tr>
             <th>Dessert</th>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Dessert' %}
+            {{ dish.name }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Dessert' %}
+            {{ dish.products }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {{ in_fridge['Dessert']  }} <br>
+        </td>
+        <td>
+            {{must_buy['Dessert'] }}
+        </td>
+        <td>
+        </td>
         </tr>
         <tr>
             <th>Dinner</th>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Dinner' %}
+            {{ dish.name }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {% for dish in dishes %}
+            {% if dish.category == 'Dinner' %}
+            {{ dish.products }}
+            {% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {{ in_fridge['Dinner']  }} <br>
+        </td>
+        <td>
+            {{must_buy['Dinner'] }}
+        </td>
+        <td>
+
+        </td>
         </tr>
     </table>
 

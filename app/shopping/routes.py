@@ -1,3 +1,4 @@
+from collections import defaultdict
 from datetime import datetime, date, timedelta
 from flask import url_for, redirect, render_template
 from sqlalchemy import desc
@@ -202,24 +203,30 @@ def week_menu():
 @bp.route('/daily_menu/<day>', methods=['GET', 'POST'])
 @login_required
 def daily_menu(day):
+    date = day
+
     form = MenuForm()
     if form.validate_on_submit():
         name = form.name.data
         products = form.products.data
         category = form.category.data
-        # calories_sum = 0
-        # for product in products:
-        #     calories = Portion.query.with_entities(Portion.calories).filter(Portion.name == product).first()
-        #     if calories:
-        #         calories_sum += calories
-        #     else:
-        #         flash(f'{product} not in database')
         dish = Menu(name=name, products=products, date=datetime.strptime(day, '%Y-%m-%d').date(),
                     category=category, user=current_user)
-
         db.session.add(dish)
         db.session.commit()
         return redirect(url_for('shopping.daily_menu', day=dish.date))
+
     dishes = Menu.query.filter_by(date=day).all()
-    date = day
-    return render_template('shopping/daily_menu.html', form=form, dishes=dishes, date=date)
+
+    in_fridge = defaultdict(list)
+    must_buy = defaultdict(list)
+
+    for dish in dishes:
+        for product in dish.products.split(','):
+            check_fridge = Fridge.query.filter_by(name=product.capitalize(), user=current_user).all()
+            if check_fridge:
+                in_fridge[dish.category] = product
+            else:
+                must_buy[dish.category] = product
+    return render_template('shopping/daily_menu.html', form=form, dishes=dishes, date=date, in_fridge=in_fridge,
+                           must_buy=must_buy)

@@ -86,7 +86,6 @@ class Menu(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     products = db.Column(db.String)
-    calories = db.Column(db.Float)
     date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     category = db.Column(db.String)
