@@ -1,9 +1,9 @@
 from datetime import datetime, date, timedelta
-from flask import url_for, redirect, render_template, flash
+from flask import url_for, redirect, render_template
 from sqlalchemy import desc
 from app.shopping import bp
 from app import db
-from app.models import List, ListProduct, Fridge, Menu, Portion
+from app.models import List, ListProduct, Fridge, Menu
 from flask_login import login_required, current_user
 from app.shopping.forms import ListForm, ListProductForm, FridgeForm, MenuForm
 
@@ -94,28 +94,19 @@ def delete_product_from_fridge(id):
 @login_required
 def week_menu():
     today = date.today()
+
+    week = []
+
     if today.weekday() == 0:
         monday = today
-        tuesday = monday + timedelta(days=1)
+        tuesday = today + timedelta(days=1)
         wednesday = today + timedelta(days=2)
         thursday = today + timedelta(days=3)
         friday = today + timedelta(days=4)
         saturday = today + timedelta(days=5)
         sunday = today + timedelta(days=6)
 
-        menu_monday = Menu.query.filter_by(date=monday).all()
-        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
-        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
-        menu_thursday = Menu.query.filter_by(date=thursday).all()
-        menu_friday = Menu.query.filter_by(date=friday).all()
-        menu_sunday = Menu.query.filter_by(date=sunday).all()
-        menu_saturday = Menu.query.filter_by(date=saturday).all()
-
-        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
-                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
-                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
-                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
-                               menu_sunday=menu_sunday)
+        week = [i for i in (monday, tuesday, wednesday, thursday, friday, saturday, sunday)]
 
     elif today.weekday() == 1:
         tuesday = today
@@ -124,21 +115,11 @@ def week_menu():
         thursday = today + timedelta(days=2)
         friday = today + timedelta(days=3)
         saturday = today + timedelta(days=4)
-        sunday = saturday + timedelta(days=5)
+        sunday = today + timedelta(days=5)
 
-        menu_monday = Menu.query.filter_by(date=monday).all()
-        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
-        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
-        menu_thursday = Menu.query.filter_by(date=thursday).all()
-        menu_friday = Menu.query.filter_by(date=friday).all()
-        menu_sunday = Menu.query.filter_by(date=sunday).all()
-        menu_saturday = Menu.query.filter_by(date=saturday).all()
-
-        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
-                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
-                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
-                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
-                               menu_sunday=menu_sunday)
+        week = {key: value for (key, value) in (
+            ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
+            ('friday', friday), ('saturday', saturday), ('sunday', sunday))}
 
     elif today.weekday() == 2:
         wednesday = today
@@ -149,19 +130,9 @@ def week_menu():
         saturday = today + timedelta(days=3)
         sunday = saturday + timedelta(days=4)
 
-        menu_monday = Menu.query.filter_by(date=monday).all()
-        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
-        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
-        menu_thursday = Menu.query.filter_by(date=thursday).all()
-        menu_friday = Menu.query.filter_by(date=friday).all()
-        menu_sunday = Menu.query.filter_by(date=sunday).all()
-        menu_saturday = Menu.query.filter_by(date=saturday).all()
-
-        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
-                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
-                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
-                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
-                               menu_sunday=menu_sunday)
+        week = {key: value for (key, value) in (
+            ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
+            ('friday', friday), ('saturday', saturday), ('sunday', sunday))}
 
     elif today.weekday() == 3:
         thursday = today
@@ -172,19 +143,9 @@ def week_menu():
         saturday = today + timedelta(days=2)
         sunday = saturday + timedelta(days=3)
 
-        menu_monday = Menu.query.filter_by(date=monday).all()
-        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
-        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
-        menu_thursday = Menu.query.filter_by(date=thursday).all()
-        menu_friday = Menu.query.filter_by(date=friday).all()
-        menu_sunday = Menu.query.filter_by(date=sunday).all()
-        menu_saturday = Menu.query.filter_by(date=saturday).all()
-
-        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
-                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
-                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
-                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
-                               menu_sunday=menu_sunday)
+        week = {key: value for (key, value) in (
+            ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
+            ('friday', friday), ('saturday', saturday), ('sunday', sunday))}
 
     elif today.weekday() == 4:
         friday = today
@@ -195,19 +156,9 @@ def week_menu():
         saturday = today + timedelta(days=1)
         sunday = today + timedelta(days=2)
 
-        menu_monday = Menu.query.filter_by(date=monday).all()
-        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
-        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
-        menu_thursday = Menu.query.filter_by(date=thursday).all()
-        menu_friday = Menu.query.filter_by(date=friday).all()
-        menu_sunday = Menu.query.filter_by(date=sunday).all()
-        menu_saturday = Menu.query.filter_by(date=saturday).all()
-
-        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
-                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
-                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
-                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
-                               menu_sunday=menu_sunday)
+        week = {key: value for (key, value) in (
+            ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
+            ('friday', friday), ('saturday', saturday), ('sunday', sunday))}
 
     elif today.weekday() == 5:
         saturday = today
@@ -218,19 +169,9 @@ def week_menu():
         friday = today - timedelta(days=1)
         sunday = today + timedelta(days=1)
 
-        menu_monday = Menu.query.filter_by(date=monday).all()
-        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
-        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
-        menu_thursday = Menu.query.filter_by(date=thursday).all()
-        menu_friday = Menu.query.filter_by(date=friday).all()
-        menu_sunday = Menu.query.filter_by(date=sunday).all()
-        menu_saturday = Menu.query.filter_by(date=saturday).all()
-
-        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
-                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
-                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
-                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
-                               menu_sunday=menu_sunday)
+        week = {key: value for (key, value) in (
+            ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
+            ('friday', friday), ('saturday', saturday), ('sunday', sunday))}
 
     elif today.weekday() == 6:
         sunday = today
@@ -241,19 +182,21 @@ def week_menu():
         friday = today - timedelta(days=3)
         saturday = today - timedelta(days=1)
 
-        menu_monday = Menu.query.filter_by(date=monday).all()
-        menu_tuesday = Menu.query.filter_by(date=tuesday).all()
-        menu_wednesday = Menu.query.filter_by(date=wednesday).all()
-        menu_thursday = Menu.query.filter_by(date=thursday).all()
-        menu_friday = Menu.query.filter_by(date=friday).all()
-        menu_sunday = Menu.query.filter_by(date=sunday).all()
-        menu_saturday = Menu.query.filter_by(date=saturday).all()
+        week = {key: value for (key, value) in (
+            ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
+            ('friday', friday), ('saturday', saturday), ('sunday', sunday))}
 
-        return render_template('shopping/week_menu.html', monday=monday, tuesday=tuesday, wednesday=wednesday,
-                               thursday=thursday, friday=friday, saturday=saturday, sunday=sunday,
-                               menu_monday=menu_monday, menu_tuesday=menu_tuesday, menu_wednesday=menu_wednesday,
-                               menu_thursday=menu_thursday, menu_friday=menu_friday, menu_saturday=menu_saturday,
-                               menu_sunday=menu_sunday)
+    menu_monday = Menu.query.filter_by(date=week['monday']).all()
+    menu_tuesday = Menu.query.filter_by(date=week['tuesday']).all()
+    menu_wednesday = Menu.query.filter_by(date=week['wednesday']).all()
+    menu_thursday = Menu.query.filter_by(date=week['thursday']).all()
+    menu_friday = Menu.query.filter_by(date=week['friday']).all()
+    menu_sunday = Menu.query.filter_by(date=week['sunday']).all()
+    menu_saturday = Menu.query.filter_by(date=week['saturday']).all()
+
+    return render_template('shopping/week_menu.html', menu_monday=menu_monday, menu_tuesday=menu_tuesday,
+                           menu_wednesday=menu_wednesday, menu_thursday=menu_thursday, menu_friday=menu_friday,
+                           menu_saturday=menu_saturday, menu_sunday=menu_sunday, week=week)
 
 
 @bp.route('/daily_menu/<day>', methods=['GET', 'POST'])
@@ -278,6 +221,5 @@ def daily_menu(day):
         db.session.commit()
         return redirect(url_for('shopping.daily_menu', day=dish.date))
     dishes = Menu.query.filter_by(date=day).all()
-    fridge = Fridge.query.filter_by(user=current_user).all()
     date = day
     return render_template('shopping/daily_menu.html', form=form, dishes=dishes, date=date)

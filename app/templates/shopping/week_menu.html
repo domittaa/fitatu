@@ -6,34 +6,34 @@
             <th></th>
             <th>
                 Monday <br>
-                {{ monday }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=monday) }}">Edit</a>
+                {{ week['monday'] }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=week['monday']) }}">Edit</a>
             </th>
             <th>
                 Tuesday <br>
-                {{ tuesday }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=tuesday) }}">Edit</a>
+                {{ week['tuesday'] }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=week['tuesday']) }}">Edit</a>
             </th>
             <th>
                 Wednesday<br>
-                {{ wednesday }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=wednesday) }}">Edit</a>
+                {{ week['wednesday'] }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=week['wednesday']) }}">Edit</a>
             </th>
             <th>Thursday<br>
-                {{ thursday }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=thursday) }}">Edit</a>
+                {{ week['thursday'] }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=week['thursday']) }}">Edit</a>
             </th>
             <th>Friday<br>
-                {{ friday }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=friday) }}">Edit</a>
+                {{ week['friday'] }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=week['friday']) }}">Edit</a>
             </th>
             <th>Saturday<br>
-                {{ saturday }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=saturday) }}">Edit</a>
+                {{ week['saturday'] }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=week['saturday']) }}">Edit</a>
             </th>
             <th>Sunday<br>
-                {{ sunday }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=sunday) }}">Edit</a>
+                {{ week['sunday'] }}<br>
+                <a href="{{ url_for('shopping.daily_menu', day=week['sunday']) }}">Edit</a>
             </th>
         </tr>
         <tr>
