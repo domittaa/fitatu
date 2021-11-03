@@ -1,5 +1,7 @@
 from datetime import datetime, date, timedelta
-from flask import url_for, redirect, render_template
+from flask import url_for, redirect, render_template, request
+
+from app.food.routes import redirect_url
 from app.week_func import get_week
 from app.workouts import bp
 from app import db
@@ -43,4 +45,14 @@ def add_workout(date):
         db.session.add(new_workout)
         db.session.commit()
         return redirect(url_for('workouts.workout_plan', date=date))
-    return render_template('workouts/add_workout.html', form=form)
+    workouts = Workout.query.filter_by(user=current_user, date=date).all()
+    return render_template('workouts/add_workout.html', form=form, workouts=workouts, date=date)
+
+
+@bp.route('/delete_workout/<id>', methods=['GET', "POST"])
+@login_required
+def delete_workout(id):
+    workout_to_delete = Workout.query.filter_by(id=id).first()
+    db.session.delete(workout_to_delete)
+    db.session.commit()
+    return redirect(redirect_url())

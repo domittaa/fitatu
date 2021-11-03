@@ -40,7 +40,7 @@ def get_week(date):
         thursday = today + timedelta(days=1)
         friday = today + timedelta(days=2)
         saturday = today + timedelta(days=3)
-        sunday = saturday + timedelta(days=4)
+        sunday = today + timedelta(days=4)
 
         week = {key: value for (key, value) in (
             ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
@@ -55,7 +55,7 @@ def get_week(date):
         wednesday = today - timedelta(days=1)
         friday = today + timedelta(days=1)
         saturday = today + timedelta(days=2)
-        sunday = saturday + timedelta(days=3)
+        sunday = today + timedelta(days=3)
 
         week = {key: value for (key, value) in (
             ('monday', monday), ('tuesday', tuesday),  ('wednesday', wednesday), ('thursday', thursday),
