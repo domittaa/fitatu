@@ -91,10 +91,13 @@ def delete_product_from_fridge(id):
     return redirect(url_for('shopping.fridge'))
 
 
-@bp.route('/week_menu', methods=['GET', 'POST'])
+@bp.route('/week_menu', defaults={'date': str(date.today())}, methods=['GET', 'POST'])
+@bp.route('/week_menu/<date>', methods=['GET', 'POST'])
 @login_required
-def week_menu():
-    today = date.today()
+def week_menu(date):
+    today = datetime.strptime(date, '%Y-%m-%d').date()
+    tomorrow = today + timedelta(days=7)
+    yesterday = today - timedelta(days=7)
 
     week = []
 
@@ -197,7 +200,8 @@ def week_menu():
 
     return render_template('shopping/week_menu.html', menu_monday=menu_monday, menu_tuesday=menu_tuesday,
                            menu_wednesday=menu_wednesday, menu_thursday=menu_thursday, menu_friday=menu_friday,
-                           menu_saturday=menu_saturday, menu_sunday=menu_sunday, week=week)
+                           menu_saturday=menu_saturday, menu_sunday=menu_sunday, week=week,
+                           today=today, yesterday=yesterday, tomorrow=tomorrow)
 
 
 @bp.route('/daily_menu/<day>', methods=['GET', 'POST'])
@@ -225,8 +229,8 @@ def daily_menu(day):
         for product in dish.products.split(','):
             check_fridge = Fridge.query.filter_by(name=product.capitalize(), user=current_user).all()
             if check_fridge:
-                in_fridge[dish.category] = product
+                in_fridge[dish.category].append(product)
             else:
-                must_buy[dish.category] = product
+                must_buy[dish.category].append(product)
     return render_template('shopping/daily_menu.html', form=form, dishes=dishes, date=date, in_fridge=in_fridge,
                            must_buy=must_buy)

@@ -296,6 +296,20 @@
                 {% endfor %}
             </td>
         </tr>
-
 </table>
+<nav aria-label="...">
+        <ul class="pager">
+            <li class="previous">
+                <a style="color: rgb(127,196,196);" href="{{ url_for('shopping.week_menu', date=yesterday) }}">
+                    <span aria-hidden="true"> &larr;</span> Last week
+                </a>
+            </li>
+            <li class="next">
+                <a style="color: rgb(127,196,196);" href="{{url_for('shopping.week_menu', date=tomorrow)}}"> Next week
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
 {% endblock %}
