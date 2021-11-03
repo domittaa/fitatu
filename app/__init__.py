@@ -36,6 +36,9 @@ def create_app(config_class=Config):
     from app.shopping import bp as shopping_bp
     app.register_blueprint(shopping_bp)
 
+    from app.workouts import bp as workouts_bp
+    app.register_blueprint(workouts_bp)
+
     return app
 
 from app import models

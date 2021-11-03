@@ -23,6 +23,15 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('profile.index') }}">Home</a></li>
                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Calculators <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a href="{{ url_for('calculators.bmi') }}">BMI calculator</a></li>
+                            <li><a href="{{ url_for('calculators.bmr') }}">BMR calculator</a></li>
+                            <li><a href="{{ url_for('calculators.ter') }}">TER calculator</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">Calories <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -32,24 +41,20 @@
                     </li>
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">Planning <span class="caret"></span></a>
+                       aria-haspopup="true" aria-expanded="false">Shopping <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li><a href="{{ url_for('shopping.list') }}">Shopping List</a></li>
                             <li><a href="{{ url_for('shopping.fridge') }}">My Fridge</a></li>
                             <li><a href="{{ url_for('shopping.week_menu') }}"> Menu</a></li>
-                            <li><a href=""> Workouts</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Calculators <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">Workouts <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a href="{{ url_for('calculators.bmi') }}">BMI calculator</a></li>
-                            <li><a href="{{ url_for('calculators.bmr') }}">BMR calculator</a></li>
-                            <li><a href="{{ url_for('calculators.ter') }}">TER calculator</a></li>
+                        <li><a href="{{ url_for('workouts.workout_plan') }}"> Plan</a></li>
                         </ul>
                     </li>
-
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
