@@ -1,6 +1,122 @@
 {% extends 'base.html' %}
 {% block app_content %}
+    <table>
+        <tr>
+            <th></th>
+            <th>
+                Monday <br>
+                {{ week['monday'] }}<br>
+                <a href="{{ url_for('workouts.add_workout', date=week['monday'])}}">Edit</a>
+            </th>
+            <th>
+                Tuesday <br>
+                {{ week['tuesday'] }}<br>
+                <a href="{{ url_for('workouts.add_workout', date=week['tuesday'])}}">Edit</a>
+            </th>
+            <th>
+                Wednesday<br>
+                {{ week['wednesday'] }}<br>
+                <a href="{{ url_for('workouts.add_workout', date=week['wednesday'])}}">Edit</a>
+            </th>
+            <th>Thursday<br>
+                {{ week['thursday'] }}<br>
+                <a href="{{ url_for('workouts.add_workout', date=week['thursday'])}}">Edit</a>
+            </th>
+            <th>Friday<br>
+                {{ week['friday'] }}<br>
+                <a href="{{ url_for('workouts.add_workout', date=week['friday'])}}">Edit</a>
+            </th>
+            <th>Saturday<br>
+                {{ week['saturday'] }}<br>
+                <a href="{{ url_for('workouts.add_workout', date=week['saturday'])}}">Edit</a>
+            </th>
+            <th>Sunday<br>
+                {{ week['sunday'] }}<br>
+                <a href="{{ url_for('workouts.add_workout', date=week['sunday'])}}">Edit</a>
+            </th>
+        </tr>
+    <tr>
+    <th>
+         Category
+    </th>
+        <td>
+            {% for plan in monday_plan %}
+            {{ plan.category }}
+            {% endfor %}
+        </td>
+        <td>
+            {% for plan in tuesday_plan %}
+            {{ plan.category }}
+            {% endfor %}
+        </td>
+        <td>
+            {% for plan in wednesday_plan %}
+            {{ plan.category }}
+            {% endfor %}
+        </td>
+        <td>
+            {% for plan in thursday_plan %}
+            {{ plan.category }}
+            {% endfor %}
+        </td>
+        <td>
+            {% for plan in friday_plan %}
+            {{ plan.category }}
+            {% endfor %}
+        </td>
+        <td>
+            {% for plan in saturday_plan %}
+            {{ plan.category }}
+            {% endfor %}
+        </td>
+        <td>
+            {% for plan in sunday_plan %}
+            {{ plan.category }}
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+         <th>
+           Description
+        </th>
+         <td>
+            {% for plan in monday_plan %}
+            {{ plan.description }}
+            {% endfor %}
+        </td>
+         <td>
+            {% for plan in tuesday_plan %}
+            {{ plan.description }}
+            {% endfor %}
+        </td>
+         <td>
+            {% for plan in wednesday_plan %}
+            {{ plan.description }}
+            {% endfor %}
+        </td>
+         <td>
+            {% for plan in thursday_plan %}
+            {{ plan.description }}
+            {% endfor %}
+        </td>
+         <td>
+            {% for plan in friday_plan %}
+            {{ plan.description }}
+            {% endfor %}
+        </td>
+         <td>
+            {% for plan in saturday_plan %}
+            {{ plan.description }}
+            {% endfor %}
+        </td>
+         <td>
+            {% for plan in sunday_plan %}
+            {{ plan.description }}
+            {% endfor %}
+        </td>
+    </tr>
 
+</table>
 
 
 

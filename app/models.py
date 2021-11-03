@@ -24,6 +24,7 @@ class User(UserMixin, db.Model):
     list = db.relationship('List', backref='user', lazy='dynamic')
     fridge = db.relationship('Fridge', backref='user', lazy='dynamic')
     menu = db.relationship('Menu', backref='user', lazy='dynamic')
+    workout = db.relationship('Workout', backref='user', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -89,6 +90,15 @@ class Menu(db.Model):
     date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     category = db.Column(db.String)
+
+
+class Workout(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String)
+    description = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.Date)
+
 
 
 
