@@ -1,5 +1,3 @@
-from datetime import date
-
 from app import db
 from flask import render_template, flash, redirect, url_for
 from app.auth import bp
