@@ -27,9 +27,9 @@ def workout_plan(date):
     saturday_plan = Workout.query.filter_by(user=current_user, date=week['saturday']).all()
     sunday_plan = Workout.query.filter_by(user=current_user, date=week['sunday']).all()
 
-    plan = [monday_plan, tuesday_plan,wednesday_plan, thursday_plan, friday_plan, saturday_plan, sunday_plan]
+    plan = [monday_plan, tuesday_plan, wednesday_plan, thursday_plan, friday_plan, saturday_plan, sunday_plan]
 
-    return render_template('workouts/workout_plan.html',today=today, tomorrow=tomorrow, yesterday=yesterday, week=week,
+    return render_template('workouts/workout_plan.html', today=today, tomorrow=tomorrow, yesterday=yesterday, week=week,
                            monday_plan=monday_plan, tuesday_plan=tuesday_plan, wednesday_plan=wednesday_plan,
                            thursday_plan=thursday_plan, friday_plan=friday_plan, saturday_plan=saturday_plan,
                            sunday_plan=sunday_plan, plan=plan)
@@ -45,8 +45,7 @@ def add_workout(date):
         db.session.add(new_workout)
         db.session.commit()
         return redirect(url_for('workouts.workout_plan', date=date))
-    workouts = Workout.query.filter_by(user=current_user, date=date).all()
-    return render_template('workouts/add_workout.html', form=form, workouts=workouts, date=date)
+    return render_template('workouts/add_workout.html', form=form, date=date)
 
 
 @bp.route('/delete_workout/<id>', methods=['GET', "POST"])
@@ -55,4 +54,4 @@ def delete_workout(id):
     workout_to_delete = Workout.query.filter_by(id=id).first()
     db.session.delete(workout_to_delete)
     db.session.commit()
-    return redirect(redirect_url())
+    return redirect(url_for('workouts.workout_plan', date=workout_to_delete.date))

@@ -7,33 +7,75 @@
             <th>
                 Monday <br>
                 {{ week['monday'] }}<br>
-                <a href="{{ url_for('workouts.add_workout', date=week['monday'])}}">Edit</a>
+                {% if monday_plan %}
+                {% for plan in monday_plan %}
+                    <a href="{{ url_for('workouts.delete_workout', id=plan.id) }}">DELETE</a>
+                {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('workouts.add_workout', date=week['monday'])}}">ADD</a>
+                {% endif %}
             </th>
             <th>
                 Tuesday <br>
                 {{ week['tuesday'] }}<br>
-                <a href="{{ url_for('workouts.add_workout', date=week['tuesday'])}}">Edit</a>
+                {% if tuesday_plan %}
+                {% for plan in tuesday_plan %}
+                    <a href="{{ url_for('workouts.delete_workout', id=plan.id) }}">DELETE</a>
+                {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('workouts.add_workout', date=week['tuesday'])}}">ADD</a>
+                {% endif %}
             </th>
             <th>
                 Wednesday<br>
                 {{ week['wednesday'] }}<br>
-                <a href="{{ url_for('workouts.add_workout', date=week['wednesday'])}}">Edit</a>
+                {% if wednesday_plan %}
+                {% for plan in wednesday_plan %}
+                    <a href="{{ url_for('workouts.delete_workout', id=plan.id) }}">DELETE</a>
+                {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('workouts.add_workout', date=week['wednesday'])}}">ADD</a>
+                {% endif %}
             </th>
             <th>Thursday<br>
                 {{ week['thursday'] }}<br>
-                <a href="{{ url_for('workouts.add_workout', date=week['thursday'])}}">Edit</a>
+                {% if thursday_plan %}
+                {% for plan in thursday_plan %}
+                    <a href="{{ url_for('workouts.delete_workout', id=plan.id) }}">DELETE</a>
+                {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('workouts.add_workout', date=week['thursday'])}}">ADD</a>
+                {% endif %}
             </th>
             <th>Friday<br>
                 {{ week['friday'] }}<br>
-                <a href="{{ url_for('workouts.add_workout', date=week['friday'])}}">Edit</a>
+                {% if friday_plan %}
+                {% for plan in friday_plan %}
+                    <a href="{{ url_for('workouts.delete_workout', id=plan.id) }}">DELETE</a>
+                {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('workouts.add_workout', date=week['friday'])}}">ADD</a>
+                {% endif %}
             </th>
             <th>Saturday<br>
                 {{ week['saturday'] }}<br>
-                <a href="{{ url_for('workouts.add_workout', date=week['saturday'])}}">Edit</a>
+                {% if saturday_plan %}
+                {% for plan in saturday_plan %}
+                    <a href="{{ url_for('workouts.delete_workout', id=plan.id) }}">DELETE</a>
+                {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('workouts.add_workout', date=week['saturday'])}}">ADD</a>
+                {% endif %}
             </th>
             <th>Sunday<br>
                 {{ week['sunday'] }}<br>
-                <a href="{{ url_for('workouts.add_workout', date=week['sunday'])}}">Edit</a>
+                {% if sunday_plan %}
+                {% for plan in sunday_plan %}
+                    <a href="{{ url_for('workouts.delete_workout', id=plan.id) }}">DELETE</a>
+                {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('workouts.add_workout', date=week['sunday'])}}">ADD</a>
+                {% endif %}
             </th>
         </tr>
     <tr>

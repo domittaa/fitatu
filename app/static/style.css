@@ -99,3 +99,9 @@ a, p {
     background: RGB(132,152,182) ;
 }
 
+textarea {
+  width: 400px;
+  height: 150px;
+    border-radius: 0.5rem;
+}
+

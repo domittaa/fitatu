@@ -15,11 +15,6 @@
         {{ form.submit }}
     </p>
     </form>
-    <h3>My workouts for {{ date }}:</h3>
-    {% for workout in workouts %}
-        Category: {{ workout.category }} <br>
-        Description: {{ workout.description }} <br>
-        <a href="{{ url_for('workouts.delete_workout', id=workout.id) }}">Delete</a>
-        <br><br>
-    {% endfor %}
+    <br>
+        <a href="{{ url_for('workouts.workout_plan') }}"> Week plan</a>
 {% endblock %}
