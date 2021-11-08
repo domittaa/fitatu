@@ -14,7 +14,7 @@ I am still working on this app, so some things might change and there are more f
 ### Shoppping list 
 ![image](https://user-images.githubusercontent.com/63907920/140705169-efeca2c9-9874-4130-b75f-95c67129fa27.png)
 
-### My fridge page where we can add products that we have in home and control their expired date
+### My fridge page where we can add products that we have in home and control their expire date
 ![image](https://user-images.githubusercontent.com/63907920/140705300-495519f8-f2c8-402b-aae8-0d45714ea201.png)
 
 ### Planning workouts:
