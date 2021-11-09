@@ -31,143 +31,119 @@
         <th>Ingredients</th>
         <th>In fridge</th>
         <th>Must buy</th>
-        <th>Recipe</th>
+        <th>Delete</th>
     </tr>
     <tr>
-        <th>Breakfast</th>
-        <td>
-            {% for dish in dishes %}
+        {% for dish in dishes %}
             {% if dish.category == 'Breakfast' %}
-            {{ dish.name }}<br>
+            <th>Breakfast</th>
+                <td>
+                    {{ dish.name }}<br>
+                </td>
+                <td>
+                    {{ dish.products }}
+                </td>
+                <td>
+                    {{ ", ".join(in_fridge['Breakfast'])  }} <br>
+                </td>
+                <td>
+                    {{", ".join(must_buy['Breakfast']) }}
+                </td>
+                <td>
+                    <a href="{{ url_for('shopping.delete_menu', id= dish.id) }}">Delete</a>
+                </td>
+                </tr>
             {% endif %}
             {% endfor %}
-        </td>
-        <td>
-            {% for dish in dishes %}
-            {% if dish.category == 'Breakfast' %}
-            {{ dish.products }}
-            {% endif %}
-            {% endfor %}
-        </td>
-        <td>
-            {{ ", ".join(in_fridge['Breakfast'])  }} <br>
-        </td>
-        <td>
-            {{", ".join(must_buy['Breakfast']) }}
-        </td>
-        <td>
-
-        </td>
-
-    </tr>
         <tr>
+        {% for dish in dishes %}
+            {% if dish.category == 'Second breakfast' %}
             <th>Second breakfast</th>
-        <td>
-            {% for dish in dishes %}
-            {% if dish.category == 'Second breakfast' %}
-            {{ dish.name }}
+            <td>
+                {{ dish.name }}
+            </td>
+            <td>
+                {{ dish.products }}
+            </td>
+            <td>
+                {{ ", ".join(in_fridge['Second breakfast'])  }} <br>
+            </td>
+            <td>
+                {{", ".join(must_buy['Second breakfast']) }}
+            </td>
+            <td>
+                <a href="{{ url_for('shopping.delete_menu', id= dish.id) }}">Delete</a>
+            </td>
             {% endif %}
-            {% endfor %}
-        </td>
-        <td>
-            {% for dish in dishes %}
-            {% if dish.category == 'Second breakfast' %}
-            {{ dish.products }}
-            {% endif %}
-            {% endfor %}
-        </td>
-        <td>
-            {{ ", ".join(in_fridge['Second breakfast'])  }} <br>
-        </td>
-        <td>
-            {{", ".join(must_buy['Second breakfast']) }}
-        </td>
-        <td>
-        </td>
+        {% endfor %}
         </tr>
         <tr>
-            <th>Lunch</th>
-        <td>
             {% for dish in dishes %}
-            {% if dish.category == 'Lunch' %}
-            {{ dish.name }}
-            {% endif %}
+                {% if dish.category == 'Lunch' %}
+                <th>Lunch</th>
+                <td>
+                    {{ dish.name }}
+                </td>
+                <td>
+                    {{ dish.products }}
+                </td>
+                <td>
+                    {{ ", ".join(in_fridge['Lunch']) }} <br>
+                </td>
+                <td>
+                    {{ ", ".join(must_buy['Lunch']) }}
+                </td>
+                <td>
+                    <a href="{{ url_for('shopping.delete_menu', id= dish.id) }}">Delete</a>
+                </td>
+                {% endif %}
             {% endfor %}
-        </td>
-        <td>
-            {% for dish in dishes %}
-            {% if dish.category == 'Lunch' %}
-            {{ dish.products }}
-            {% endif %}
-            {% endfor %}
-        </td>
-        <td>
-            {{ ", ".join(in_fridge['Lunch']) }} <br>
-        </td>
-        <td>
-            {{ ", ".join(must_buy['Lunch']) }}
-        </td>
-        <td>
-
-        </td>
         </tr>
         <tr>
-            <th>Dessert</th>
-        <td>
-            {% for dish in dishes %}
-            {% if dish.category == 'Dessert' %}
-            {{ dish.name }}
+             {% for dish in dishes %}
+                {% if dish.category == 'Dessert' %}
+                    <th>Dessert</th>
+                <td>
+                    {{ dish.name }}
+                </td>
+                <td>
+                    {{ dish.products }}
+                </td>
+                <td>
+                    {{ ", ".join(in_fridge['Dessert']) }} <br>
+                </td>
+                <td>
+                    {{ ", ".join(must_buy['Dessert']) }}
+                </td>
+                <td>
+                    <a href="{{ url_for('shopping.delete_menu', id= dish.id) }}">Delete</a>
+                </td>
             {% endif %}
             {% endfor %}
-        </td>
-        <td>
-            {% for dish in dishes %}
-            {% if dish.category == 'Dessert' %}
-            {{ dish.products }}
-            {% endif %}
-            {% endfor %}
-        </td>
-        <td>
-            {{ ", ".join(in_fridge['Dessert']) }} <br>
-        </td>
-        <td>
-            {{ ", ".join(must_buy['Dessert']) }}
-        </td>
-        <td>
-        </td>
         </tr>
         <tr>
-            <th>Dinner</th>
-        <td>
             {% for dish in dishes %}
-            {% if dish.category == 'Dinner' %}
-            {{ dish.name }} <br>
+                {% if dish.category == 'Dinner' %}
+                <th>Dinner</th>
+                <td>
+                    {{ dish.name }}
+                </td>
+                <td>
+                    {{ dish.products }}
+                </td>
+                <td>
+                    {{ ", ".join(in_fridge['Dinner'])  }} <br>
+                </td>
+                <td>
+                    {{ ", ".join(must_buy['Dinner']) }}
+                </td>
+                <td>
+                    <a href="{{ url_for('shopping.delete_menu', id= dish.id) }}">Delete</a>
+            </td>
             {% endif %}
             {% endfor %}
-        </td>
-        <td>
-            {% for dish in dishes %}
-            {% if dish.category == 'Dinner' %}
-            {{ dish.products }}
-            {% endif %}
-            {% endfor %}
-        </td>
-        <td>
-            {{ ", ".join(in_fridge['Dinner'])  }} <br>
-        </td>
-        <td>
-            {{ ", ".join(must_buy['Dinner']) }}
-        </td>
-        <td>
-
-        </td>
         </tr>
-    <tr>
-        <th>
-            Delete
-        </th>
-
-    </tr>
     </table>
-
+    <br>
+    <a href="{{ url_for('shopping.week_menu') }}">Back to week menu</a>
 {% endblock %}

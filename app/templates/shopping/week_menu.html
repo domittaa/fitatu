@@ -1,39 +1,41 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
+    <h1>{{ current_user.username }}'s week menu:</h1>
+    <br>
     <table>
         <tr>
             <th></th>
             <th>
                 Monday <br>
                 {{ week['monday'] }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=week['monday']) }}">Edit</a>
+                <a href="{{ url_for('shopping.daily_menu', day=week['monday']) }}">Detail</a>
             </th>
             <th>
                 Tuesday <br>
                 {{ week['tuesday'] }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=week['tuesday']) }}">Edit</a>
+                <a href="{{ url_for('shopping.daily_menu', day=week['tuesday']) }}">Details</a>
             </th>
             <th>
                 Wednesday<br>
                 {{ week['wednesday'] }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=week['wednesday']) }}">Edit</a>
+                <a href="{{ url_for('shopping.daily_menu', day=week['wednesday']) }}">Details</a>
             </th>
             <th>Thursday<br>
                 {{ week['thursday'] }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=week['thursday']) }}">Edit</a>
+                <a href="{{ url_for('shopping.daily_menu', day=week['thursday']) }}">Details</a>
             </th>
             <th>Friday<br>
                 {{ week['friday'] }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=week['friday']) }}">Edit</a>
+                <a href="{{ url_for('shopping.daily_menu', day=week['friday']) }}">Details</a>
             </th>
             <th>Saturday<br>
                 {{ week['saturday'] }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=week['saturday']) }}">Edit</a>
+                <a href="{{ url_for('shopping.daily_menu', day=week['saturday']) }}">Details</a>
             </th>
             <th>Sunday<br>
                 {{ week['sunday'] }}<br>
-                <a href="{{ url_for('shopping.daily_menu', day=week['sunday']) }}">Edit</a>
+                <a href="{{ url_for('shopping.daily_menu', day=week['sunday']) }}">Details</a>
             </th>
         </tr>
         <tr>
