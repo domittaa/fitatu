@@ -8,6 +8,8 @@ from app.models import List, ListProduct, Fridge, Menu
 from flask_login import login_required, current_user
 from app.shopping.forms import ListForm, ListProductForm, FridgeForm, MenuForm
 from app.week_func import get_week
+from app.food.routes import redirect_url
+
 
 
 @bp.route('/list ', methods=['GET', 'POST'])
@@ -134,8 +136,8 @@ def daily_menu(day):
 
     dishes = Menu.query.filter_by(date=day).all()
 
-    in_fridge = defaultdict(list)
-    must_buy = defaultdict(list)
+    in_fridge = defaultdict(list, {k: [] for k in ('Breakfast', 'Second breakfast', 'Lunch', 'Dessert', 'Dinner')})
+    must_buy = defaultdict(list, {k: [] for k in ('Breakfast', 'Second breakfast', 'Lunch', 'Dessert', 'Dinner')})
 
     for dish in dishes:
         for product in dish.products.split(','):
@@ -146,3 +148,12 @@ def daily_menu(day):
                 must_buy[dish.category].append(product)
     return render_template('shopping/daily_menu.html', form=form, dishes=dishes, date=date, in_fridge=in_fridge,
                            must_buy=must_buy)
+
+
+@bp.route('/delete/menu/<id>', methods=['GET', "POST"])
+@login_required
+def delete_menu(id):
+    id = Menu.query.filter_by(id=id).first()
+    db.session.delete(id)
+    db.session.commit()
+    return redirect(redirect_url())

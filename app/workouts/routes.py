@@ -1,11 +1,9 @@
 from datetime import datetime, date, timedelta
-from flask import url_for, redirect, render_template, request
-
-from app.food.routes import redirect_url
+from flask import url_for, redirect, render_template
 from app.week_func import get_week
 from app.workouts import bp
 from app import db
-from app.models import List, ListProduct, Fridge, Menu, Workout
+from app.models import Workout
 from flask_login import login_required, current_user
 from app.workouts.forms import WorkoutForm
 
