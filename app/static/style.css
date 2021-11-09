@@ -71,13 +71,14 @@ tr.strikeout td:before {
     box-shadow: none!important;
 }
 
-h4,h2, h1, h3 {
+h1, h2, h4 {
     color: RGB(132,152,182);
 }
 
-a, p {
+a, h3 {
     color: RGB(203,141,153);
 }
+
 
 
 #check {

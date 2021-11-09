@@ -12,7 +12,7 @@ import os
 from werkzeug.utils import secure_filename
 import imghdr
 from matplotlib import pyplot as plt
-
+import random
 import io
 import base64
 
@@ -20,7 +20,19 @@ import base64
 @login_required
 @bp.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('profile/index.html')
+    quotes_path = os.path.join(current_app.config['TEXT_PATH'], 'quotes.txt')
+    open_quotes = open(quotes_path)
+    quotes = open_quotes.readlines()
+    quote = random.choice(quotes)
+
+    tips_path = os.path.join(current_app.config['TEXT_PATH'], 'tips.txt')
+    open_tips = open(tips_path, encoding='utf8')
+    tips = open_tips.readlines()
+    tip = random.choice(tips)
+    tip_header = tip.split(':')[0]
+    tip_body = tip.split(':')[1]
+
+    return render_template('profile/index.html', quote=quote, tip_header=tip_header, tip_body=tip_body)
 
 
 def fig_to_base64(fig):

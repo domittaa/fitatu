@@ -5,6 +5,17 @@
          <img src="{{url_for('static', filename='logo.jpg') }}"
                      height="100" width="100" alt="logo" loading="lazy" style=" border-radius: 50%;">
             Hi {{ current_user.username }}!</h1>
+        <h2>Quote for today: </h2>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="RGB(203,141,153)" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+            <i>{{ quote }}</i></h3>
+        <h2>Tip for today:</h2>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="RGB(203,141,153)" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+            {{ tip_header }}: </h3>
+        <ul><h4><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="RGB(203,141,153)" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+            {{ tip_body }}</h4></ul>
     {% else %}
         <h1>
         <img src="{{url_for('static', filename='logo.jpg') }}"
