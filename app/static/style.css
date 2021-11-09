@@ -1,11 +1,10 @@
 td, th {
   width: 30rem;
   height: 5rem;
-  border: 1px solid #ccc;
+  border: 1px solid RGB(203,141,153);
   text-align: center;
     position: relative;
     padding: 5px 10px;
-    border-color:RGB(203,141,153);
 }
 
 th {
@@ -79,6 +78,14 @@ a, h3 {
     color: RGB(203,141,153);
 }
 
+p {
+    color:  RGB(234,144,134);
+}
+
+.bmi{
+    color: black;
+}
+
 
 
 #check {
@@ -104,4 +111,11 @@ textarea {
   width: 400px;
   height: 150px;
     border-radius: 0.5rem;
+}
+
+input[type=submit], input[type=text], .select {
+    background-color: white;
+    color: RGB(132,152,182) ;
+    border-radius: 10px;
+    border-color: RGB(132,152,182) ;
 }

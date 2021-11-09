@@ -21,7 +21,7 @@ def list():
         list = List(name=form.name.data, user=current_user)
         db.session.add(list)
         db.session.commit()
-        return redirect(url_for('shopping.shopping'))
+        return redirect(url_for('shopping.list'))
     return render_template('shopping/list.html', form=form, lists=lists)
 
 

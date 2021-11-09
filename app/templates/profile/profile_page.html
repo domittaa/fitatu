@@ -57,11 +57,11 @@
                         {{ form.hidden_tag() }}
                         <p>
                             {{ form.month.label }}
-                            {{ form.month }}
+                            {{ form.month(class='select') }}
                         </p>
                         <p>
                             {{ form.year.label }}
-                            {{ form.year }}
+                            {{ form.year(class='select') }}
                         </p>
                          <p>
                              {{ form.submit }}

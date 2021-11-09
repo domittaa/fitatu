@@ -28,7 +28,7 @@ class EditProfileForm(FlaskForm):
 class SelectDateForm(FlaskForm):
     month = SelectField('Choose month:')
     year = SelectField('Choose year:')
-    submit = SubmitField('Sumbit')
+    submit = SubmitField('Submit')
 
 
 

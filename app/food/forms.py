@@ -11,13 +11,13 @@ class FoodForm(FlaskForm):
     proteins = FloatField('Proteins')
     carbs = FloatField('Carbs')
     fats = FloatField('Fats')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Add ')
 
 
 class FoodTracker(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     portion = IntegerField('Portion in grams:', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Add ')
 
 
 class DateForm(FlaskForm):

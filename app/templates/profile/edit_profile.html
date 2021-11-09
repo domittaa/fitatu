@@ -4,10 +4,7 @@
     <h1>Edit informations about you:</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
-        <p>
-            {{ form.avatar.label('Avatar') }}
-            {{ form.avatar }}
-        </p>
+
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
@@ -29,15 +26,19 @@
         </p>
         <p>
             {{ form.sex.label }}<br>
-            {{ form.sex() }}<br>
+            {{ form.sex(class='select') }}<br>
         </p>
         <p>
             {{ form.pal.label }}<br>
-            {{ form.pal() }}<br>
+            {{ form.pal(class='select') }}<br>
+        </p>
+        <p>
+            {{ form.avatar.label('Avatar') }}
+            {{ form.avatar }}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-    <a href="{{ url_for('profile.profile_page', id=current_user.id)}}">Cancel</a>
+
     <h1>What is PAL?</h1>
     <p>Physical Activity Level (PAL) is a way to express a person's daily physical activity as a single number.
         If you don't know what is your PAL use a table:
@@ -71,8 +72,13 @@
   <tr>
     <td>2.0</td>
     <td>Very high (around 560 minutes weekly)</td>
-    <td>Proffesional athlete, exercising 6 times a week or a person who does hard manual job</td>
+    <td>Professional athlete, exercising 6 times a week or a person who does hard manual job</td>
   </tr>
 </table>
+    <br>
+    <a href="{{ url_for('profile.profile_page', id=current_user.id)}}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/></svg>
+    </a>
 
 {% endblock %}

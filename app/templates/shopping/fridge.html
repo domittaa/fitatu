@@ -5,20 +5,20 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
+            {{ form.category.label }}<br>
+            {{ form.category(class='select') }}
+        </p>
+        <p>
+            {{ form.expired_date.label }}<br>
+            {{ form.expired_date(class='select') }}
+        </p>
+        <p>
             {{ form.name.label }}<br>
             {{ form.name(size=32) }}
         </p>
         <p>
             {{ form.quantity.label }}<br>
             {{ form.quantity(size=32) }}
-        </p>
-        <p>
-            {{ form.expired_date.label }}<br>
-            {{ form.expired_date() }}
-        </p>
-        <p>
-            {{ form.category.label }}<br>
-            {{ form.category() }}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
