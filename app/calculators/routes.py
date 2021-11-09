@@ -1,9 +1,11 @@
 from flask import render_template, flash
+from flask_login import login_required
 from app.calculators import bp
 from app.calculators.forms import BMIForm, BMRForm, TERForm
 
 
 @bp.route('/bmi', methods=['GET', 'POST'])
+@login_required
 def bmi():
     form = BMIForm()
     if form.validate_on_submit():
@@ -15,6 +17,7 @@ def bmi():
 
 
 @bp.route('/bmr', methods=['GET', 'POST'])
+@login_required
 def bmr():
     form = BMRForm()
     if form.validate_on_submit():
@@ -31,6 +34,7 @@ def bmr():
 
 
 @bp.route('/ter', methods=['GET', 'POST'])
+@login_required
 def ter():
     form = TERForm()
     if form.validate_on_submit():
