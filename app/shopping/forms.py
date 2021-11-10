@@ -6,13 +6,13 @@ from wtforms.validators import DataRequired, Optional
 
 class ListForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    submit = SubmitField('Create List')
+    submit = SubmitField('Create')
 
 
 class ListProductForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     quantity = IntegerField('Quantity', validators=[Optional()])
-    submit = SubmitField('Add product')
+    submit = SubmitField('Add')
 
 
 class FridgeForm(FlaskForm):
