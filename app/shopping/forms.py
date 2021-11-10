@@ -27,5 +27,5 @@ class MenuForm(FlaskForm):
     name = StringField('Name:', validators=[DataRequired()])
     products = StringField('Products:', validators=[DataRequired()])
     category = SelectField('Category', choices=['Breakfast', 'Second breakfast', 'Lunch', 'Dessert', 'Dinner'])
-    submit = SubmitField('Sumbit')
+    submit = SubmitField('Submit')
 
