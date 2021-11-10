@@ -25,7 +25,7 @@ I am still working on this app, so some things might change and there are more f
 ![image](https://user-images.githubusercontent.com/63907920/141084507-0453a489-0eb4-4400-ad5d-8ffba8c7a2e6.png)
 
 ### Products info:
-![image](https://user-images.githubusercontent.com/63907920/141088982-a1cb2e89-2b5a-42a6-a5c5-78a762a9b927.png)
+![image](https://user-images.githubusercontent.com/63907920/141099194-65296254-60c9-4c8a-8bbb-d0b1ba5ce264.png)
 
 
 
