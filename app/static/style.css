@@ -5,6 +5,7 @@ td, th {
   text-align: center;
     position: relative;
     padding: 5px 10px;
+
 }
 
 th {
@@ -70,7 +71,7 @@ tr.strikeout td:before {
     box-shadow: none!important;
 }
 
-h1, h2, h4 {
+h1, h2, h4, .index {
     color: RGB(132,152,182);
 }
 
@@ -119,3 +120,4 @@ input[type=submit], input[type=text], .select {
     border-radius: 10px;
     border-color: RGB(132,152,182) ;
 }
+

@@ -55,12 +55,11 @@
     </tr>
     </table>
     <br>
-    <h4>Choose different day:</h4>
+    <h4>Choose a different day:</h4>
     <form action="" method="post">
         {{ date_form.hidden_tag() }}
         <p>
-            {{ date_form.date.label }}<br>
-            {{ date_form.date() }}
+            {{ date_form.date(class='select') }}
         </p>
         <p>{{ date_form.submit() }}</p>
     </form>

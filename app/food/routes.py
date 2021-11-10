@@ -12,7 +12,6 @@ from flask_login import login_required, current_user
 @bp.route('/add', methods=['GET', 'POST'])
 def add():
     form = FoodForm()
-    page = request.args.get('page', 1, type=int)
 
     if form.validate_on_submit():
         name = form.name.data.capitalize()
@@ -29,12 +28,27 @@ def add():
             flash(f'{check_if_product_in_database.name} already in database!')
         return redirect(url_for('food.add'))
 
-    products = Food.query.order_by('name').paginate(page, current_app.config['ITEMS_PER_PAGE'], False)
-    next_url = url_for('food.add', page=products.next_num) if products.has_next else None
-    prev_url = url_for('food.add', page=products.prev_num) if products.has_prev else None
+    return render_template('food/add.html', form=form)
 
-    return render_template('food/add.html', form=form, food=products.items,
-                           next_url=next_url, prev_url=prev_url)
+
+@bp.route('/products', methods=['GET', 'POST'])
+@login_required
+def products_info():
+    page = request.args.get('page', 1, type=int)
+    form = SearchForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        search = "%{}%".format(name)
+        products = Food.query.filter(Food.name.like(search)).all()
+        if products:
+            return render_template('food/products_info.html', food=products, form=form)
+        else:
+            flash(f'Cant find {name} in our database.')
+
+    products = Food.query.order_by('name').paginate(page, current_app.config['ITEMS_PER_PAGE'], False)
+    next_url = url_for('food.products_info', page=products.next_num) if products.has_next else None
+    prev_url = url_for('food.products_info', page=products.prev_num) if products.has_prev else None
+    return render_template('food/products_info.html', food=products.items, next_url=next_url, prev_url=prev_url, form=form)
 
 
 @bp.route('/tracker', defaults={'time': datetime.today().strftime('%Y-%m-%d')}, methods=['GET', 'POST'])
