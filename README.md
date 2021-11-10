@@ -20,5 +20,11 @@ I am still working on this app, so some things might change and there are more f
 ### Planning workouts:
 ![image](https://user-images.githubusercontent.com/63907920/140706227-9ddf9575-836d-4636-80ca-820a5a88db9d.png)
 
+### Meal planning:
+![image](https://user-images.githubusercontent.com/63907920/141084155-ea28db95-3d95-48ca-8e73-1eada2623fe1.png)
+![image](https://user-images.githubusercontent.com/63907920/141084507-0453a489-0eb4-4400-ad5d-8ffba8c7a2e6.png)
+
+
+
 
 
