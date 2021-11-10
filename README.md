@@ -1,8 +1,25 @@
 # THIS PROJECT IS IN PROGRESS
 
-I am still working on this app, so some things might change and there are more functionalities to come. The main goal of this app is to gather in one place all things related to healthy lifestyle. Some functionalities in app are:
+# App description
 
+# General informations
+The main goal of this social media application is to gather all things related to a healthy lifestyle in one place. Calories calculator, workout and food planner, shopping list, user profile with statistics are among notable features, which I will described in more details in the next section.
+
+# Functionalities
+1.  Profile page with monthly stats
+2.  BMI, BMR and TER calcluators
+3.  Food tracker for calculating calories, fats, carbs and proteins eaten during the day
+4.  Shoppping list 
+5.  My fridge page where we can add products that we have in home and control their expire date
+6.  Planning workouts
+7.  Meal planning
+8.  Products info
+
+# Details
 ### Profile page with monthly stats
+
+User can add or edit informations about them, like their age, sex, weight or height. They can also see monthly stats about how much calories, fats, proteins and carbs they have eaten during every month.
+
 ![image](https://user-images.githubusercontent.com/63907920/140704965-343d7744-d725-4f84-8de9-4c9ef60da371.png)
 
 ### BMI, BMR and TER calcluators
