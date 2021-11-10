@@ -1,6 +1,6 @@
 # THIS PROJECT IS IN PROGRESS
 
-# App description
+# App description:
 
 # General informations
 The main goal of this social media application is to gather all things related to a healthy lifestyle in one place. Calories calculator, workout and food planner, shopping list, user profile with statistics are among notable features, which I will described in more details in the next section.
