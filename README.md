@@ -2,15 +2,15 @@
 
 # App description:
 
-# General informations
+# General information
 The main goal of this social media application is to gather all things related to a healthy lifestyle in one place. Calories calculator, workout and food planner, shopping list, user profile with statistics are among notable features, which I will describe in more details in the next section.
 
 # Functionalities
 1.  Profile page with monthly stats
-2.  BMI, BMR and TER calcluators
+2.  BMI, BMR and TER calculators
 3.  Food tracker for calculating calories, fats, carbs and proteins eaten during the day
-4.  Shoppping list 
-5.  My fridge page where we can add products that we have in home and control their expire date
+4.  Shopping list 
+5.  My fridge page where we can add products that we have in home and control their expiry date
 6.  Planning workouts
 7.  Meal planning
 8.  Products info
@@ -18,7 +18,7 @@ The main goal of this social media application is to gather all things related t
 # Details
 ### Profile page with monthly stats
 
-User can add or edit informations about them, like their age, sex, weight or height. They can also see monthly stats about how much calories, fats, proteins and carbs they have eaten during every month.
+User can add or edit information about them, like their age, sex, weight or height. They can also see monthly stats about how many calories, fats, proteins and carbs they have eaten during every month.
 
 ![image](https://user-images.githubusercontent.com/63907920/140704965-343d7744-d725-4f84-8de9-4c9ef60da371.png)
 
@@ -28,10 +28,10 @@ User can add or edit informations about them, like their age, sex, weight or hei
 ### Food tracker for calculating calories, fats, carbs and proteins eaten during the day
 ![image](https://user-images.githubusercontent.com/63907920/140705090-3b9f5766-7132-4709-a36e-6f5a49111c12.png)
 
-### Shoppping list 
+### Shopping list 
 ![image](https://user-images.githubusercontent.com/63907920/140705169-efeca2c9-9874-4130-b75f-95c67129fa27.png)
 
-### My fridge page where we can add products that we have in home and control their expire date
+### My fridge page where we can add products that we have in home and control their expiry date
 ![image](https://user-images.githubusercontent.com/63907920/140705300-495519f8-f2c8-402b-aae8-0d45714ea201.png)
 
 ### Planning workouts:
