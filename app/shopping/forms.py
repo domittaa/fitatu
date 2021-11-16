@@ -18,7 +18,7 @@ class ListProductForm(FlaskForm):
 class FridgeForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     quantity = IntegerField('Quantity', validators=[Optional()])
-    expired_date = DateField('Expired date',validators=[Optional()], format='%Y-%m-%d')
+    expired_date = DateField('Expiration date',validators=[Optional()], format='%Y-%m-%d')
     category = SelectField('Category', choices=['Grains', 'Vegetables', 'Fruits', 'Dairy', 'Meat', 'Drinks'])
     submit = SubmitField('Add product')
 

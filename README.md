@@ -33,7 +33,7 @@ Food tracker for every day helps user to control how much is he eating during th
 ![image](https://user-images.githubusercontent.com/63907920/140705090-3b9f5766-7132-4709-a36e-6f5a49111c12.png)
 
 ### Shopping list
-User can create multiple lists and then enter them to add products that he wants to buy, he must enter the name of the product and the quantity. After submiting the product shows in table below and then user can check if he already bought this product or delete product if he doesnt want to have it on the list anymore. 
+User can create multiple lists and then enter them to add products that he wants to buy, he must enter the name of the product and the quantity. After submitting the product shows in table below and then user can check if he already bought this product or delete product if he doesn't want to have it on the list anymore. 
 ![image](https://user-images.githubusercontent.com/63907920/140705169-efeca2c9-9874-4130-b75f-95c67129fa27.png)
 
 ### My fridge page where we can add products that we have in home and control their expiration date
@@ -42,19 +42,19 @@ After user provides information about product category, expiration date, name of
 ![image](https://user-images.githubusercontent.com/63907920/141936475-504f198e-2cac-4a83-bbbb-759774c9045f.png)
 
 ### Meal planning:
-User can see his menu for whole week and he can use arrows to navigate between different weeks so he can plan his meals ahead. After entering a given day he can edit meals for this day. User has to provide information about name of the meal, products that are needed to prepare it and category (breakfast, second breakfast, lunch, dessert, dinner). After that user can see in the table what products he already has in his fridge and what products he still needs to buy. He can also delete a given meal if he doesnt want to have it on the menu anymore.
+User can see his menu for whole week, and he can use arrows to navigate between different weeks, so he can plan his meals ahead. After entering a given day he can edit meals for this day. User has to provide information about name of the meal, products that are needed to prepare it and category (breakfast, second breakfast, lunch, dessert, dinner). After that user can see in the table what products he already has in his fridge and what products he still needs to buy. He can also delete a given meal if he doesn't want to have it on the menu anymore.
 
 ![image](https://user-images.githubusercontent.com/63907920/141084155-ea28db95-3d95-48ca-8e73-1eada2623fe1.png)
 ![image](https://user-images.githubusercontent.com/63907920/141084507-0453a489-0eb4-4400-ad5d-8ffba8c7a2e6.png)
 
 ### Planning workouts:
 
-User can see his workout plan for whole week and after entering a given day he can add information about what kind of workout is this and write a detailed description about what he will be doing. User can use arrows to navigate between different weeks so he can plan his workouts ahead. 
+User can see his workout plan for whole week and after entering a given day he can add information about what kind of workout is this and write a detailed description about what he will be doing. User can use arrows to navigate between different weeks, so he can plan his workouts ahead. 
 ![image](https://user-images.githubusercontent.com/63907920/140706227-9ddf9575-836d-4636-80ca-820a5a88db9d.png)
 
 
 ### Products info:
-In products info there are information about how many calories, proteins, fats and carbs are in 100 grams of every product that Fitatu has in it's database. User can also use search form to look for specific product. If user can't find the product that he is looking for he can add it by himself. 
+In products info there are information about how many calories, proteins, fats and carbs are in 100 grams of every product that Fitatu has in its database. User can also use search form to look for specific product. If user can't find the product that he is looking for he can add it by himself. 
 ![image](https://user-images.githubusercontent.com/63907920/141099194-65296254-60c9-4c8a-8bbb-d0b1ba5ce264.png)
 
 
