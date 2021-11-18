@@ -53,6 +53,11 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
+                    <h2 class="mb-0">Calories history in {{ month_name }}:</h2>
+                        <img src="{{calories_plot}}"/>
+                      <h2 class="mb-0">Macronutrients history in {{ month_name }}:</h2>
+                      <img src="{{nutrition_plot}}"/>
+                      <h2>Want to see older history? Choose a month: </h2>
                       <form action="" method="post" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
                         <p>
@@ -67,10 +72,6 @@
                              {{ form.submit }}
                          </p>
                      </form>
-                    <h2 class="mb-0">Calories history:</h2>
-                        <img src="{{calories_plot}}"/>
-                      <h2 class="mb-0">Macronutrients history:</h2>
-                      <img src="{{nutrition_plot}}"/>
                     </div>
                   </div>
                   </div>

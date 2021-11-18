@@ -63,6 +63,7 @@ def profile_page(id):
     if form.validate_on_submit():
         month = months[form.month.data]
         year = form.year.data
+        month_name = form.month.data
 
         portion = Portion.query.filter(extract('month', Portion.time) == month, extract('year', Portion.time) == year,
                                        Portion.user_id == user.id).order_by(Portion.time).all()
@@ -75,6 +76,7 @@ def profile_page(id):
     elif request.method == "GET":
         month = datetime.utcnow().month
         year = datetime.utcnow().year
+        month_name = datetime.utcnow().strftime("%B")
 
         portion = Portion.query.filter(extract('month', Portion.time) == month, extract('year', Portion.time) == year,
                                        Portion.user_id == user.id).order_by(Portion.time).all()
@@ -109,7 +111,7 @@ def profile_page(id):
     nutrition_plot = "data:image/png;base64, {}".format(encoded_nutritions.decode('utf-8'))
 
     return render_template('profile/profile_page.html', user=user, calories_plot=calories_plot,
-                           nutrition_plot=nutrition_plot, form=form)
+                           nutrition_plot=nutrition_plot, form=form, month_name=month_name)
 
 
 def validate_image(stream):

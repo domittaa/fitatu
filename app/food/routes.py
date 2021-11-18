@@ -26,7 +26,8 @@ def add():
             db.session.commit()
         else:
             flash(f'{check_if_product_in_database.name} already in database!')
-        return redirect(url_for('food.add'))
+        flash('Successfully added!')
+        return redirect(url_for('food.products_info'))
 
     return render_template('food/add.html', form=form)
 

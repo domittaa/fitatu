@@ -30,21 +30,20 @@
             <td>{{ food.calories }}</td>
       {% endfor %}
     </tr>
-    </table><br>
-    <h4>Cant find what you are looking for? <a href="{{ url_for('food.add') }}">Add product to our database.</a></h4>
-
+    </table>
 <nav aria-label="...">
         <ul class="pager">
             <li class="previous{% if not prev_url %} disabled{% endif %}">
                 <a style="color: rgb(127,196,196);" href="{{ prev_url or '#' }}">
-                    <span aria-hidden="true">&larr;</span>
+                    <span aria-hidden="true">&lArr;</span>
                 </a>
             </li>
             <li class="next{% if not next_url %} disabled{% endif %}">
                 <a style="color: rgb(127,196,196);" href="{{ next_url or '#' }}">
-                    <span aria-hidden="true">&rarr;</span>
+                    <span aria-hidden="true">&rArr;</span>
                 </a>
             </li>
         </ul>
     </nav>
+    <h4>Cant find what you are looking for? <a href="{{ url_for('food.add') }}">Add product to our database.</a></h4>
  {% endblock %}
